@@ -1,11 +1,20 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { Color } from '../../constants/color'
+import React, { useEffect } from 'react'
+import { backButtonAction } from '../../helper/helper';
+import { Color } from '../../constants/color';
+
+const backButton = (navigateTo, navigation) => {
+  useEffect(() => {
+    backButtonAction(navigateTo, navigation);
+  }, [navigation]);
+};
 
 const Spot = ({navigation}) => {
   const toDetail = () => {
     navigation.navigate("SpotDetail");
   }
+
+  backButton("List", navigation);
 
   return (
     <View style={styles.container}>

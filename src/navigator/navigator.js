@@ -28,13 +28,7 @@ const Navigator = () => {
             <Stack.Screen
               name="Tab"
               component={Tabs}
-              options={({ route }) => {
-                const currentRouteName = getFocusedRouteNameFromRoute(route);
-                return {
-                  title:
-                    currentRouteName == undefined ? "Home" : currentRouteName,
-                };
-              }}
+              options={{ headerShown: false }}
             />
           </>
         )}

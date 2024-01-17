@@ -1,7 +1,16 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { backButtonAction } from "../../helper/helper";
 
-const SurveyDetail = () => {
+const backButton = (navigateTo, navigation) => {
+  useEffect(() => {
+    backButtonAction(navigateTo, navigation);
+  }, [navigation]);
+};
+
+const SurveyDetail = ({navigation}) => {
+  backButton("Survey", navigation);
+
   return (
     <View>
       <Text>SurveyDetail</Text>

@@ -1,8 +1,8 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../screens/home";
 import { SpotGrp, BoothGrp, SeminarGrp, SurveyGrp } from "./scannerNavigator";
-import Visitor from "../screens/visitor";
 import TabBar from "../components/tabBar";
+import Visitor from "../screens/visitor";
 
 const Tab = createBottomTabNavigator();
 
@@ -10,14 +10,29 @@ const Tabs = () => {
   return (
     <Tab.Navigator
       tabBar={(props) => <TabBar {...props} />}
-      screenOptions={{ headerShown: false }}
       initialRouteName="Home"
     >
-      <Tab.Screen name="Spots" component={SpotGrp} />
-      <Tab.Screen name="Booths" component={BoothGrp} />
+      <Tab.Screen
+        name="Spots"
+        component={SpotGrp}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Booths"
+        component={BoothGrp}
+        options={{ headerShown: false }}
+      />
       <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Seminars" component={SeminarGrp} />
-      <Tab.Screen name="Surveys" component={SurveyGrp} />
+      <Tab.Screen
+        name="Seminars"
+        component={SeminarGrp}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Surveys"
+        component={SurveyGrp}
+        options={{ headerShown: false }}
+      />
       {/* <Tab.Screen name='Visitor' component={Visitor} /> */}
     </Tab.Navigator>
   );

@@ -1,20 +1,33 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View } from "react-native";
+import React, { useEffect } from "react";
+import { Color } from "../constants/color";
+import { backButtonAction } from "../helper/helper";
 
-const Home = () => {
+const backButton = (navigateTo, navigation) => {
+  useEffect(() => {
+    backButtonAction(navigateTo, navigation, styles.backButton);
+  }, [navigation]);
+};
+
+const Home = ({ navigation }) => {
+  backButton("List", navigation);
+
   return (
     <View style={styles.container}>
       <Text>Hello</Text>
     </View>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     borderWidth: 1,
-    borderColor: "blue"
+    borderColor: "blue",
+  },
+  backButton: {
+    marginLeft: "10%",
   }
-})
+});
