@@ -4,17 +4,17 @@ import { getItem } from "../utils/storage";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [authenticated, setAuthenticate] = useState(null);
+  const [authenticated, setAuthenticate] = useState(false);
 
   const checkAuth = async () => {
     const result = await getItem('token');
 
-    result == null ? setAuthenticate(false) : setAuthenticate(true);
+    if (result !== null) {
+      setAuthenticate(true);
+    }
   }
 
-  if (authenticated === null) {
-    checkAuth();
-  }
+  checkAuth();
 
   return (
     <AuthContext.Provider value={{ authenticated, setAuthenticate }}>
