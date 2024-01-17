@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../provider/authProvider";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import InputBox from "../components/inputBox";
-import { Color } from "../constants/Color";
+import { Color } from "../constants/color";
 import { setItem } from "../utils/storage";
 
 const Login = () => {

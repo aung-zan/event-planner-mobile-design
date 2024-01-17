@@ -1,6 +1,6 @@
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import { removeItem } from "../utils/storage";
-import { Color } from "../constants/Color";
+import { Color } from "../constants/color";
 import { useAuth } from "../provider/authProvider";
 
 const List = ({ navigation }) => {

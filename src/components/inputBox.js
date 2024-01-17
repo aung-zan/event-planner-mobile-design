@@ -1,6 +1,6 @@
 import { StyleSheet, View, TextInput } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import { Color } from "../constants/Color";
+import { Color } from "../constants/color";
 
 const Email = ({ text, onChange }) => {
   return (

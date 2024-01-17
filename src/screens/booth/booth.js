@@ -1,15 +1,15 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { Color } from '../constants/Color'
+import { Color } from '../../constants/color'
 
-const Spot = ({navigation}) => {
+const Booth = ({navigation}) => {
   const toDetail = () => {
-    navigation.navigate("SpotDetail");
+    navigation.navigate("BoothDetail");
   }
 
   return (
     <View style={styles.container}>
-      <Text>Spot</Text>
+      <Text>Booth</Text>
       <Pressable onPress={toDetail} style={styles.button}>
         <Text style={styles.buttonText}>To Detail</Text>
       </Pressable>
@@ -17,7 +17,7 @@ const Spot = ({navigation}) => {
   )
 }
 
-export default Spot
+export default Booth
 
 const styles = StyleSheet.create({
   container: {
