@@ -1,9 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Pressable } from 'react-native'
 import { Color } from '../constants/color';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react'
 
 const Card = ({ type, data }) => {
+  const navigation = useNavigation();
   let styleType;
 
   switch (type) {
@@ -18,8 +20,12 @@ const Card = ({ type, data }) => {
       break;
   }
 
+  const cardOnClick = () => {
+    navigation.navigate("Tab");
+  }
+
   return (
-    <View style={[styles.card, styleType]}>
+    <Pressable style={[styles.card, styleType]} onPress={cardOnClick}>
 
       <View style={styles.cardBody}>
         <View style={styles.cardTitle}>
@@ -41,7 +47,7 @@ const Card = ({ type, data }) => {
         <FontAwesome5 name="chevron-right" size={24} color="white" />
       </View>
 
-    </View>
+    </Pressable>
   );
 }
 

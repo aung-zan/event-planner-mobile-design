@@ -13,7 +13,9 @@ const Navigator = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{ headerTitleStyle: { fontFamily: "Georgia" } }}
+      >
         {authenticated == false ? (
           <Stack.Screen
             name="Login"
@@ -25,7 +27,10 @@ const Navigator = () => {
             <Stack.Screen
               name="List"
               component={List}
-              options={{ headerStyle: { backgroundColor: Color.secondary } }}
+              options={{
+                headerStyle: { backgroundColor: Color.secondary },
+                title: "Event List",
+              }}
             />
             <Stack.Screen
               name="Tab"
