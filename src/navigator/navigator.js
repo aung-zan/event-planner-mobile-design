@@ -1,12 +1,10 @@
-import {
-  NavigationContainer,
-  getFocusedRouteNameFromRoute,
-} from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Login from "../screens/login";
 import List from "../screens/list";
 import { useAuth } from "../provider/authProvider";
 import Tabs from "./tabNavigator";
+import { Color } from "../constants/color";
 
 const Stack = createNativeStackNavigator();
 
@@ -24,7 +22,11 @@ const Navigator = () => {
           />
         ) : (
           <>
-            <Stack.Screen name="List" component={List} />
+            <Stack.Screen
+              name="List"
+              component={List}
+              options={{ headerStyle: { backgroundColor: Color.secondary } }}
+            />
             <Stack.Screen
               name="Tab"
               component={Tabs}

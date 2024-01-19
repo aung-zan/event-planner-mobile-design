@@ -6,4 +6,5 @@ export const Color = {
   success: '#009DAD',
   pending: '#1B65A6',
   danger: '#E2344B',
+  danger2: '#D90D32',
 };
