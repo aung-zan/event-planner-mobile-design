@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
+import { HeaderBackButton } from "@react-navigation/elements";
 import { FontAwesome } from '@expo/vector-icons';
 import { removeItem } from "./storage";
-import React from "react";
+import { Color } from "../constants/color";
 
 const Profile = ({logout}) => {
   return (
@@ -20,6 +21,23 @@ export const headerRightAction = (setAuthenticate, navigation) => {
   navigation.setOptions({
     headerRight: () => {
       return <Profile logout={logout} />;
+    },
+  });
+};
+
+export const backButtonAction = (navigateTo, navigation, style) => {
+  navigation.setOptions({
+    headerLeft: () => {
+      return (
+        <HeaderBackButton
+          labelVisible={false}
+          onPress={() => {
+            navigation.navigate(navigateTo);
+          }}
+          tintColor={Color.pending}
+          style={style}
+        />
+      );
     },
   });
 };

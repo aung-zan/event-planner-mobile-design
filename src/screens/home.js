@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useEffect } from "react";
 import { Color } from "../constants/color";
-import { backButtonAction } from "../helper/helper";
+import { backButtonAction } from "../utils/headerOption";
 
 const backButton = (navigateTo, navigation) => {
   useEffect(() => {
