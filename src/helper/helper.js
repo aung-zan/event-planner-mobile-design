@@ -27,3 +27,24 @@ export const getEventsByType = (events) => {
 export const getEventById = (id) => {
   return exhibitions.find(item => item.id === id);
 }
+
+export const getSpotByType = (spots) => {
+  let result = {
+    entry: [],
+    exit: [],
+  };
+
+  spots.map((data) => {
+    switch (data.type) {
+      case "entry":
+        result.entry.push(data);
+        break;
+
+      default:
+        result.exit.push(data);
+        break;
+    }
+  });
+
+  return result;
+}

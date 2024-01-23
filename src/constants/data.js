@@ -71,3 +71,56 @@ export const chartData = [
     }
   }
 ];
+
+export const spotData = [
+  {
+    id: 1,
+    name: 'Entry 1',
+    type: 'entry',
+  },
+  {
+    id: 2,
+    name: 'Entry 2',
+    type: 'entry',
+  },
+  {
+    id: 3,
+    name: 'Entry 3',
+    type: 'entry',
+  },
+  {
+    id: 4,
+    name: 'Entry 4',
+    type: 'entry',
+  },
+  {
+    id: 5,
+    name: 'Entry 5',
+    type: 'entry',
+  },
+  {
+    id: 1,
+    name: 'Exit 1',
+    type: 'exit',
+  },
+  {
+    id: 2,
+    name: 'Exit 2',
+    type: 'exit',
+  },
+  {
+    id: 3,
+    name: 'Exit 3',
+    type: 'exit',
+  },
+  {
+    id: 4,
+    name: 'Exit 4',
+    type: 'exit',
+  },
+  {
+    id: 5,
+    name: 'Exit 5',
+    type: 'exit',
+  },
+];
