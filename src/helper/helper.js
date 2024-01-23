@@ -1,3 +1,5 @@
+import { exhibitions } from "../constants/data";
+
 export const getEventsByType = (events) => {
   let result = {
     ongoing: null,
@@ -20,4 +22,8 @@ export const getEventsByType = (events) => {
   });
 
   return result;
+}
+
+export const getEventById = (id) => {
+  return exhibitions.find(item => item.id === id);
 }

@@ -4,11 +4,11 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react'
 
-const Card = ({ type, data }) => {
+const Card = ({ data }) => {
   const navigation = useNavigation();
   let styleType;
 
-  switch (type) {
+  switch (data.type) {
     case "ongoing":
       styleType = styles.ongoingCard;
       break;
@@ -20,26 +20,32 @@ const Card = ({ type, data }) => {
       break;
   }
 
-  const cardOnClick = () => {
-    navigation.navigate("Tab");
+  const cardOnClick = (id) => {
+    const params = {
+      itemId: id,
+    };
+    navigation.navigate("Tab", {
+      screen: "Home",
+      params: params,
+    });
   }
 
   return (
-    <Pressable style={[styles.card, styleType]} onPress={cardOnClick}>
+    <Pressable style={[styles.card, styleType]} onPress={() => cardOnClick(data.id)}>
 
       <View style={styles.cardBody}>
         <View style={styles.cardTitle}>
-          <Text style={styles.title}>{data}</Text>
+          <Text style={styles.title}>{data.name}</Text>
         </View>
 
         <View style={styles.cardInfo}>
           <FontAwesome5 name="calendar" size={18} color={Color.white} />
-          <Text style={styles.info}>2024/01/01 08:00 ~ 2024/01/30 17:00</Text>
+          <Text style={styles.info}>{data.datetime}</Text>
         </View>
 
         <View style={styles.cardInfo}>
           <FontAwesome5 name="map-marker-alt" size={18} color={Color.white} />
-          <Text style={styles.info}>Yangon</Text>
+          <Text style={styles.info}>{data.location}</Text>
         </View>
       </View>
 

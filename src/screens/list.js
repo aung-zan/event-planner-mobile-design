@@ -10,7 +10,7 @@ import { headerRightAction } from "../utils/headerOption";
 
 const OngoingView = ({ ongoingEvent }) => {
   return (
-    <Card key={ongoingEvent.id} type="ongoing" data={ongoingEvent.name} />
+    <Card key={ongoingEvent.id} data={ongoingEvent} />
   );
 };
 
@@ -18,7 +18,7 @@ const PendingView = ({ pendingEvent }) => {
   return (
     <ScrollView>
       {pendingEvent.map((item) => {
-        return <Card key={item.id} type="pending" data={item.name} />;
+        return <Card key={item.id} data={item} />;
       })}
     </ScrollView>
   );
@@ -28,7 +28,7 @@ const CompleteView = ({ completeEvent }) => {
   return (
     <ScrollView>
       {completeEvent.map((item) => {
-        return <Card key={item.id} type="complete" data={item.name} />;
+        return <Card key={item.id} data={item} />;
       })}
     </ScrollView>
   );

@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     marginHorizontal: "5%",
     marginTop: "5%",
     height: "5%",
+    // justifyContent: "space-evenly"
   },
   segmentButton: {
     borderColor: "red",
