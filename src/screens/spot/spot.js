@@ -3,9 +3,10 @@ import React, { useEffect, useState } from "react";
 import { backButtonAction } from "../../utils/headerOption";
 import { Color } from "../../constants/color";
 import SearchBar from "../../components/searchBar";
-import { spotData } from "../../constants/data";
+import { spotData, spotSegment } from "../../constants/data";
 import Segment from "../../components/segment";
 import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import { getSpotByType } from "../../helper/helper";
 
 const backButton = (navigateTo, navigation) => {
@@ -14,19 +15,22 @@ const backButton = (navigateTo, navigation) => {
   }, [navigation]);
 };
 
-const EntryList = ({entry}) => {
+const List = ({spot, icon}) => {
   return (
     <View style={styles.listContainer}>
       <ScrollView>
 
-        {entry.map((item) => {
+        {spot.map((item) => {
           return (
             <View key={item.id} style={styles.item}>
               <View style={styles.itemIcon}>
-                <FontAwesome name="sign-in" size={23} color={Color.white} />
+                {icon}
               </View>
               <View style={styles.itemInfo}>
                 <Text style={styles.itemText}>{item.name}</Text>
+              </View>
+              <View style={{marginLeft: "45%"}}>
+                <FontAwesome5 name="chevron-right" size={23} color={Color.secondary} />
               </View>
             </View>
           );
@@ -39,17 +43,24 @@ const EntryList = ({entry}) => {
 
 const Spot = ({ navigation }) => {
   backButton("List", navigation);
-  const [spotType, setSpotType] = useState(1);
 
+  const [spotType, setSpotType] = useState(1);
   const spots = getSpotByType(spotData);
-  console.log(spots);
+
+  if (spotType == 1) {
+    icon = <FontAwesome name="sign-in" size={23} color={Color.white} />;
+  } else {
+    icon = <FontAwesome name="sign-out" size={23} color={Color.white} />;
+  }
 
   return (
-    <View style={styles.container}>
-      <SearchBar type={1} />
-      <Segment segmentType={spotType} changeSegmentType={setSpotType} />
+    <View style={styles.background}>
+      <View style={styles.container}>
+        <SearchBar type={1} />
+        <Segment segments={spotSegment} segmentType={spotType} changeSegmentType={setSpotType} />
 
-      <EntryList entry={spots.entry} />
+        <List spot={spotType == 1 ? spots.entry : spots.exit} icon={icon} />
+      </View>
     </View>
   );
 };
@@ -57,29 +68,34 @@ const Spot = ({ navigation }) => {
 export default Spot;
 
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    backgroundColor: Color.secondary,
+  },
   container: {
     flex: 1,
     backgroundColor: Color.primary,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
   },
   listContainer: {
-    // borderWidth: 1,
     marginTop: "5%",
     marginHorizontal: "5%",
     height: "64%",
   },
   item: {
-    // borderWidth: 1,
     marginTop: "5%",
     flexDirection: "row",
     alignItems: "center",
     paddingVertical: "4%",
     borderRadius: 15,
-    backgroundColor: Color.white,
+    borderWidth: 1,
+    borderColor: Color.secondary,
   },
   itemIcon: {
     marginLeft: "2%",
     borderRadius: 50,
-    backgroundColor: Color.pending,
+    backgroundColor: Color.secondary,
     paddingHorizontal: 12,
     paddingVertical: 10,
     justifyContent: "center",
@@ -89,6 +105,7 @@ const styles = StyleSheet.create({
     marginLeft: "10%",
   },
   itemText: {
+    fontFamily: "SF",
     fontSize: 20,
     color: Color.black,
   }

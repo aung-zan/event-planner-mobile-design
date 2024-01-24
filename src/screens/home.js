@@ -6,7 +6,7 @@ import { getEventById } from "../helper/helper";
 import Card from "../components/card";
 import DatePicker from "../components/datePicker";
 import Segment from "../components/segment";
-import { chartData } from "../constants/data";
+import { chartData, homeSegment } from "../constants/data";
 import Graph from "../components/graph";
 
 const backButton = (navigateTo, navigation) => {
@@ -18,19 +18,21 @@ const backButton = (navigateTo, navigation) => {
 const Home = ({ route, navigation }) => {
   backButton("List", navigation);
 
-  const [homeSegment, setHomeSegment] = useState(1);
+  const [segmentType, setSegmentType] = useState(1);
   const eventId = route.params.itemId;
   const event = getEventById(eventId);
 
   const [data] = chartData;
 
   return (
-    <View style={styles.container}>
-      <Card data={event} />
-      <DatePicker />
-      <Segment segmentType={homeSegment} changeSegmentType={setHomeSegment} />
+    <View style={styles.background}>
+      <View style={styles.container}>
+        <Card data={event} />
+        <DatePicker />
+        <Segment segments={homeSegment} segmentType={segmentType} changeSegmentType={setSegmentType} />
 
-      {homeSegment == 1 ? <Graph type="group" data={data} /> : <></>}
+        {segmentType == 1 ? <Graph type="group" data={data} /> : <></>}
+      </View>
     </View>
   );
 };
@@ -41,8 +43,14 @@ const styles = StyleSheet.create({
   backButton: {
     marginLeft: "10%",
   },
+  background: {
+    flex: 1,
+    backgroundColor: Color.secondary,
+  },
   container: {
     flex: 1,
     backgroundColor: Color.primary,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
   },
 });

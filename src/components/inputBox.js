@@ -58,6 +58,8 @@ const styles = StyleSheet.create({
     width: "70%",
     padding: 5,
     marginLeft: "1%",
+    color: Color.black,
+    fontFamily: "SF",
   },
   password: {
     borderBottomWidth: 1,
@@ -65,5 +67,7 @@ const styles = StyleSheet.create({
     width: "70%",
     padding: 9,
     marginLeft: "2%",
+    color: Color.black,
+    fontFamily: "SF",
   },
 });

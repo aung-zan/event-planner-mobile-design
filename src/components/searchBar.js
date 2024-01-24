@@ -17,7 +17,7 @@ const SearchBar = ({ type }) => {
   }
   return (
     <View style={styles.container}>
-      <FontAwesome name="search" size={24} color="black" />
+      <FontAwesome name="search" size={24} color={Color.secondary} />
       <TextInput
         placeholder={placeholder}
         placeholderTextColor="gray"
@@ -47,5 +47,6 @@ const styles = StyleSheet.create({
     height: "100%",
     marginLeft: "2%",
     paddingLeft: "2%",
+    fontFamily: "SF",
   }
 })

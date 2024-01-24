@@ -2,27 +2,27 @@ import { StyleSheet, Text, View, Pressable } from "react-native";
 import { Color } from "../constants/color";
 import React from "react";
 
-const Segment = ({segmentType, changeSegmentType}) => {
-  let upcomingStyle;
-  let completeStyle;
-
-  if (segmentType == 1) {
-    upcomingStyle = [styles.segmentButton, styles.segmentActiveButton];
-    completeStyle = [styles.segmentButton];
-  } else {
-    upcomingStyle = [styles.segmentButton];
-    completeStyle = [styles.segmentButton, styles.segmentActiveButton];
-  }
+const Segment = ({ segments, segmentType, changeSegmentType }) => {
+  let style;
 
   return (
     <View style={styles.segment}>
-      {/* for dynamic, use map */}
-      <Pressable style={upcomingStyle} onPress={() => changeSegmentType(1)}>
-        <Text style={styles.segmentText}>Upcoming</Text>
-      </Pressable>
-      <Pressable style={completeStyle} onPress={() => changeSegmentType(2)}>
-        <Text style={styles.segmentText}>Completed</Text>
-      </Pressable>
+      {segments.map((item) => {
+        style =
+          segmentType == item.key
+            ? [styles.segmentButton, styles.segmentActiveButton]
+            : [styles.segmentButton];
+
+        return (
+          <Pressable
+            key={item.key}
+            style={style}
+            onPress={() => changeSegmentType(item.key)}
+          >
+            <Text style={styles.segmentText}>{item.name}</Text>
+          </Pressable>
+        );
+      })}
     </View>
   );
 };
@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
     marginHorizontal: "5%",
     marginTop: "5%",
     height: "5%",
-    // justifyContent: "space-evenly"
   },
   segmentButton: {
     borderColor: "red",
@@ -50,7 +49,7 @@ const styles = StyleSheet.create({
     borderBottomColor: Color.black,
   },
   segmentText: {
-    fontFamily: "Georgia",
+    fontFamily: "SF",
     fontSize: 18,
     color: Color.black,
   },

@@ -3,6 +3,7 @@ import Home from "../screens/home";
 import { SpotGrp, BoothGrp, SeminarGrp, SurveyGrp } from "./scannerNavigator";
 import TabBar from "../components/tabBar";
 import Visitor from "../screens/visitor";
+import { Color } from "../constants/color";
 
 const Tab = createBottomTabNavigator();
 
@@ -11,6 +12,11 @@ const Tabs = () => {
     <Tab.Navigator
       tabBar={(props) => <TabBar {...props} />}
       initialRouteName="Home"
+      screenOptions={{
+        headerTitleStyle: { fontFamily: "SF", color: Color.white },
+        headerShadowVisible: false,
+        headerStyle: { backgroundColor: Color.secondary }
+      }}
     >
       <Tab.Screen
         name="Spots"

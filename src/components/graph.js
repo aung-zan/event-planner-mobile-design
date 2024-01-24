@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   InfoText: {
-    fontFamily: "Georgia",
+    fontFamily: "SF",
     fontSize: 18,
     color: Color.black,
   },

@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   dateText: {
-    fontFamily: "Georgia",
+    fontFamily: "SF",
     fontSize: 18,
     paddingLeft: "3%",
   },

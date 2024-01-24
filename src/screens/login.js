@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   headerText: {
-    fontFamily: "Georgia",
+    fontFamily: "SF",
     fontSize: 65,
     color: Color.white,
   },
@@ -63,14 +63,13 @@ const styles = StyleSheet.create({
   title: {
     marginTop: "10%",
     textAlign: "center",
-    fontFamily: "Georgia",
+    fontFamily: "SF",
     fontSize: 25,
   },
   loginForm: {
     marginTop: "18%",
   },
   button: {
-    borderWidth: 1,
     borderRadius: 10,
     marginTop: "7%",
     marginLeft: "21%",
@@ -78,11 +77,10 @@ const styles = StyleSheet.create({
     height: 60,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: Color.pending,
-    borderColor: Color.pending,
+    backgroundColor: Color.secondary,
   },
   buttonText: {
-    fontFamily: "Georgia",
+    fontFamily: "SF",
     fontSize: 20,
     color: Color.white,
   },

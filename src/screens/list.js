@@ -5,6 +5,7 @@ import { exhibitions } from "../constants/data";
 import { useEffect, useState } from "react";
 import { getEventsByType } from "../helper/helper";
 import Card from "../components/card";
+import { listSegment } from "../constants/data";
 import Segment from "../components/segment";
 import { headerRightAction } from "../utils/headerOption";
 
@@ -64,6 +65,7 @@ const List = ({ navigation }) => {
         <OngoingView ongoingEvent={ongoingEvent} />
 
         <Segment
+          segments={listSegment}
           segmentType={segmentType}
           changeSegmentType={changeSegmentType}
         />
@@ -96,7 +98,7 @@ const styles = StyleSheet.create({
     paddingLeft: "2%",
   },
   titleText: {
-    fontFamily: "Georgia",
+    fontFamily: "SF",
     fontSize: 18,
   }
 });

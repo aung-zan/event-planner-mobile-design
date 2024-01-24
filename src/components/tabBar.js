@@ -15,7 +15,7 @@ function ActiveTab({ icon, iconSize, label }) {
     case "Surveys":
       activeTabs = (
         <View style={styles.isActive}>
-          <FontAwesome5 name={icon} size={iconSize} color={Color.pending} />
+          <FontAwesome5 name={icon} size={iconSize} color={Color.secondary} />
           <Text style={styles.text}>{label}</Text>
         </View>
       );
@@ -27,7 +27,7 @@ function ActiveTab({ icon, iconSize, label }) {
           <MaterialCommunityIcons
             name={icon}
             size={iconSize}
-            color={Color.pending}
+            color={Color.secondary}
           />
           <Text style={styles.text}>{label}</Text>
         </View>
@@ -36,7 +36,7 @@ function ActiveTab({ icon, iconSize, label }) {
     default:
       activeTabs = (
         <View style={styles.isActive}>
-          <FontAwesome name={icon} size={iconSize} color={Color.pending} />
+          <FontAwesome name={icon} size={iconSize} color={Color.secondary} />
           <Text style={styles.text}>{label}</Text>
         </View>
       );
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     position: "absolute",
     bottom: 25,
-    backgroundColor: Color.pending,
+    backgroundColor: Color.secondary,
     // marginBottom: "10%",
   },
   button: {
@@ -142,6 +142,7 @@ const styles = StyleSheet.create({
     backgroundColor: Color.white,
   },
   text: {
+    fontFamily: "SF",
     color: Color.black,
   },
 });

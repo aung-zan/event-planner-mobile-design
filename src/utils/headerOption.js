@@ -7,7 +7,7 @@ import { Color } from "../constants/color";
 const Profile = ({logout}) => {
   return (
     <Pressable onPress={logout}>
-      <FontAwesome name="user-circle" size={24} color="black" />
+      <FontAwesome name="user-circle" size={24} color={Color.white} />
     </Pressable>
   );
 };
@@ -34,7 +34,7 @@ export const backButtonAction = (navigateTo, navigation, style) => {
           onPress={() => {
             navigation.navigate(navigateTo);
           }}
-          tintColor={Color.pending}
+          tintColor={Color.white}
           style={style}
         />
       );

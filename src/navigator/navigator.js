@@ -14,7 +14,10 @@ const Navigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        screenOptions={{ headerTitleStyle: { fontFamily: "Georgia" } }}
+        screenOptions={{
+          headerTitleStyle: { fontFamily: "SF", color: Color.white },
+          headerShadowVisible: false,
+        }}
       >
         {authenticated == false ? (
           <Stack.Screen

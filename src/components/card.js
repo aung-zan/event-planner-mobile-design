@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     height: 160,
   },
   pendingCard: {
-    backgroundColor: Color.pending,
+    backgroundColor: Color.warning,
     height: 160,
   },
   completeCard: {
@@ -102,12 +102,12 @@ const styles = StyleSheet.create({
     marginTop: "2%"
   },
   title: {
-    fontFamily: "Georgia",
+    fontFamily: "SF",
     fontSize: 18,
     color: Color.white,
   },
   info: {
-    fontFamily: "Georgia",
+    fontFamily: "SF",
     fontSize: 15,
     color: Color.white,
     paddingLeft: "3%",
