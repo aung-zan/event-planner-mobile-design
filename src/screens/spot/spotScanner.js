@@ -1,7 +1,10 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
-import { BarCodeScanner } from 'expo-barcode-scanner';
-import { backButtonAction } from '../../utils/navigatorOptions';
+import React, { useState, useEffect, useLayoutEffect } from "react";
+import { Text, View, StyleSheet, Button, Pressable } from "react-native";
+import { BarCodeScanner } from "expo-barcode-scanner";
+import { backButtonAction } from "../../utils/navigatorOptions";
+import { checkQrCode } from "../../helper/helper";
+import { ErrorModal, SuccessModal } from "../../components/modal";
+import { Color } from "../../constants/color";
 
 const backButton = (navigateTo, navigation) => {
   useEffect(() => {
@@ -14,19 +17,25 @@ const SpotScanner = ({ navigation }) => {
 
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [modalType, setModalType] = useState(null);
 
   useEffect(() => {
     const getBarCodeScannerPermissions = async () => {
       const { status } = await BarCodeScanner.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
+      setHasPermission(status === "granted");
     };
 
     getBarCodeScannerPermissions();
   }, []);
 
   const handleBarCodeScanned = ({ type, data }) => {
+    // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    const result = checkQrCode(data);
+    setModalType(result);
+
     setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    setShowModal(true);
   };
 
   if (hasPermission === null) {
@@ -42,18 +51,42 @@ const SpotScanner = ({ navigation }) => {
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
       />
-      {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
+
+      {modalType ? (
+        <SuccessModal showModal={showModal} modalHandler={setShowModal} />
+      ) : (
+        <ErrorModal showModal={showModal} modalHandler={setShowModal} />
+      )}
+      {scanned && (
+        <Pressable style={styles.button} onPress={() => setScanned(false)}>
+          <Text style={styles.text}>Tap to Scan Again</Text>
+        </Pressable>
+      )}
     </View>
   );
-}
+};
 
 export default SpotScanner;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    marginBottom: -50,
+  },
+  button: {
+    // borderWidth: 1,
+    position: 'absolute',
+    bottom: "10%",
+    alignItems: "center",
+    justifyContent: "center",
+    left: "15%",
+    right: "15%",
+    height: "9%",
+    backgroundColor: Color.secondary,
+    borderRadius: 15,
+  },
+  text: {
+    fontFamily: "SF",
+    fontSize: 20,
+    color: Color.white,
   },
 });

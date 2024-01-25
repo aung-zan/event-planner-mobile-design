@@ -145,3 +145,7 @@ export const spotData = [
     type: "exit",
   },
 ];
+
+export const scannerData = {
+  code: "100002"
+};

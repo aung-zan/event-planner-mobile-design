@@ -1,7 +1,8 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect } from 'react'
-import { backButtonAction } from '../../utils/navigatorOptions';
-import { Color } from '../../constants/color'
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { backButtonAction } from "../../utils/navigatorOptions";
+import { Color } from "../../constants/color";
+import { ErrorModal, SuccessModal } from "../../components/modal";
 
 const backButton = (navigateTo, navigation) => {
   useEffect(() => {
@@ -9,33 +10,55 @@ const backButton = (navigateTo, navigation) => {
   }, [navigation]);
 };
 
-const Booth = ({navigation}) => {
-  const toDetail = () => {
-    navigation.navigate("BoothDetail");
-  }
-
+const Booth = ({ navigation }) => {
   backButton("List", navigation);
 
-  return (
-    <View style={styles.container}>
-      <Text>Booth</Text>
-      <Pressable onPress={toDetail} style={styles.button}>
-        <Text style={styles.buttonText}>To Detail</Text>
-      </Pressable>
-    </View>
-  )
-}
+  const [showModal, setShowModal] = useState(false);
+  const modalType = 2;
 
-export default Booth
+  const toDetail = () => {
+    navigation.navigate("BoothDetail");
+  };
+
+  const modalHandler = () => {
+    setShowModal(true);
+  };
+
+  return (
+    <View style={styles.background}>
+      <View style={styles.container}>
+        <Text>Booth</Text>
+        <Pressable onPress={modalHandler} style={styles.button}>
+          <Text style={styles.buttonText}>Open Modal</Text>
+        </Pressable>
+
+        {
+          modalType == 1
+          ? <SuccessModal showModal={showModal} modalHandler={setShowModal} />
+          : <ErrorModal showModal={showModal} modalHandler={setShowModal} />
+        }
+      </View>
+    </View>
+  );
+};
+
+export default Booth;
 
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    backgroundColor: Color.secondary,
+  },
   container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: Color.primary,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
   },
   button: {
-    borderWidth: 1,
+    // borderWidth: 1,
     borderRadius: 10,
     marginTop: "7%",
     marginLeft: "21%",
@@ -43,12 +66,12 @@ const styles = StyleSheet.create({
     height: 60,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: Color.pending,
-    borderColor: Color.pending,
+    backgroundColor: Color.secondary,
+    // borderColor: Color.pending,
   },
   buttonText: {
-    fontFamily: "Georgia",
+    fontFamily: "SF",
     fontSize: 20,
     color: Color.white,
   },
-})
+});
