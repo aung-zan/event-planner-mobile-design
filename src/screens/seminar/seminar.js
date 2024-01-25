@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect } from 'react'
-import { backButtonAction } from '../../utils/headerOption';
+import { backButtonAction } from '../../utils/navigatorOptions';
 import { Color } from '../../constants/color'
 
 const backButton = (navigateTo, navigation) => {

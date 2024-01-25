@@ -1,9 +1,9 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../screens/home";
 import { SpotGrp, BoothGrp, SeminarGrp, SurveyGrp } from "./scannerNavigator";
-import TabBar from "../components/tabBar";
 import Visitor from "../screens/visitor";
-import { Color } from "../constants/color";
+import TabBar from "../components/tabBar";
+import { tabBarOptions, hideOrShowTab } from "../utils/navigatorOptions";
 
 const Tab = createBottomTabNavigator();
 
@@ -12,16 +12,15 @@ const Tabs = () => {
     <Tab.Navigator
       tabBar={(props) => <TabBar {...props} />}
       initialRouteName="Home"
-      screenOptions={{
-        headerTitleStyle: { fontFamily: "SF", color: Color.white },
-        headerShadowVisible: false,
-        headerStyle: { backgroundColor: Color.secondary }
-      }}
+      screenOptions={({ route }) => (tabBarOptions(route))}
     >
       <Tab.Screen
         name="Spots"
         component={SpotGrp}
-        options={{ headerShown: false }}
+        options={({ route }) => ({
+          headerShown: false,
+          tabBarStyle: hideOrShowTab(route),
+        })}
       />
       <Tab.Screen
         name="Booths"

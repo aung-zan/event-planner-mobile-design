@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Color } from "../constants/color";
-import { backButtonAction } from "../utils/headerOption";
+import { backButtonAction } from "../utils/navigatorOptions";
 import { getEventById } from "../helper/helper";
 import Card from "../components/card";
 import DatePicker from "../components/datePicker";

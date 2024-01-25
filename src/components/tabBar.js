@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { View, Pressable, Text, StyleSheet } from "react-native";
 import { Color } from "../constants/color";
 import { Icon } from "../constants/icon";
@@ -14,31 +14,37 @@ function ActiveTab({ icon, iconSize, label }) {
   switch (label) {
     case "Surveys":
       activeTabs = (
-        <View style={styles.isActive}>
-          <FontAwesome5 name={icon} size={iconSize} color={Color.secondary} />
+        <>
+          <View style={styles.isActive}>
+            <FontAwesome5 name={icon} size={iconSize} color={Color.secondary} />
+          </View>
           <Text style={styles.text}>{label}</Text>
-        </View>
+        </>
       );
       break;
     case "Booths":
     case "Seminars":
       activeTabs = (
-        <View style={styles.isActive}>
-          <MaterialCommunityIcons
-            name={icon}
-            size={iconSize}
-            color={Color.secondary}
-          />
+        <>
+          <View style={styles.isActive}>
+            <MaterialCommunityIcons
+              name={icon}
+              size={iconSize}
+              color={Color.secondary}
+            />
+          </View>
           <Text style={styles.text}>{label}</Text>
-        </View>
+        </>
       );
       break;
     default:
       activeTabs = (
-        <View style={styles.isActive}>
-          <FontAwesome name={icon} size={iconSize} color={Color.secondary} />
+        <>
+          <View style={styles.isActive}>
+            <FontAwesome name={icon} size={iconSize} color={Color.secondary} />
+          </View>
           <Text style={styles.text}>{label}</Text>
-        </View>
+        </>
       );
       break;
   }
@@ -84,9 +90,24 @@ function NormalTab({ icon, iconSize, label }) {
   return <>{tabs}</>;
 }
 
-export default function TabBar({ state, navigation }) {
+export default function TabBar({ state, descriptors, navigation }) {
+  const tabHideRoute = ["Spots"];
+  const [hideTab, setHideTab] = useState(false);
+
+  useLayoutEffect(() => {
+    const routes = state.routes;
+    const focusedRouteKey = routes[state.index].key;
+    const focusedRouteName = state.routeNames[state.index];
+    const { options } = tabHideRoute.includes(focusedRouteName)
+      ? descriptors[focusedRouteKey]
+      : [];
+    options?.tabBarStyle?.display == "none"
+      ? setHideTab(true)
+      : setHideTab(false);
+  }, [state, descriptors]);
+
   return (
-    <View style={styles.container}>
+    <View style={hideTab ? styles.hideContainer : styles.container}>
       {state.routes.map((route, index) => {
         const label = route.name;
         const icon = Icon[label];
@@ -136,13 +157,18 @@ const styles = StyleSheet.create({
   isActive: {
     alignItems: "center",
     justifyContent: "center",
-    height: "95%",
-    width: "95%",
+    height: "75%",
+    width: "75%",
+    marginBottom: "5%",
     borderRadius: 50,
     backgroundColor: Color.white,
   },
   text: {
     fontFamily: "SF",
-    color: Color.black,
+    color: Color.white,
+    fontSize: 16,
+  },
+  hideContainer: {
+    display: "none",
   },
 });

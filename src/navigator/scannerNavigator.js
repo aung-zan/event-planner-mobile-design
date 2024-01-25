@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Spot from "../screens/spot/spot";
 import SpotDetail from "../screens/spot/spotDetail";
+import SpotScanner from "../screens/spot/spotScanner";
 import Booth from "../screens/booth/booth";
 import BoothDetail from "../screens/booth/boothDetail";
 import Seminar from "../screens/seminar/seminar";
@@ -22,6 +23,7 @@ export const SpotGrp = () => {
     >
       <Stack.Screen name="Spot" component={Spot} />
       <Stack.Screen name="SpotDetail" component={SpotDetail} />
+      <Stack.Screen name="SpotScanner" component={SpotScanner} />
     </Stack.Navigator>
   );
 }

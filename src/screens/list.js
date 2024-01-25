@@ -7,7 +7,7 @@ import { getEventsByType } from "../helper/helper";
 import Card from "../components/card";
 import { listSegment } from "../constants/data";
 import Segment from "../components/segment";
-import { headerRightAction } from "../utils/headerOption";
+import { headerRightAction } from "../utils/navigatorOptions";
 
 const OngoingView = ({ ongoingEvent }) => {
   return (
