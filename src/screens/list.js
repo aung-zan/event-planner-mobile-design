@@ -43,7 +43,7 @@ const headerRight = (setAuthenticate, navigation) => {
 
 const List = ({ navigation }) => {
   const { setAuthenticate } = useAuth();
-  headerRight(setAuthenticate, navigation);
+  // headerRight(setAuthenticate, navigation);
   const [segmentType, setSegmentType] = useState(1);
 
   const result = getEventsByType(exhibitions);

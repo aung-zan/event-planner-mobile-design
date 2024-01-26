@@ -7,6 +7,7 @@ import {
   FontAwesome5,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
+import { useAuth } from "../provider/authProvider";
 
 function ActiveTab({ icon, iconSize, label }) {
   let activeTabs;
@@ -93,6 +94,7 @@ function NormalTab({ icon, iconSize, label }) {
 export default function TabBar({ state, descriptors, navigation }) {
   const tabHideRoute = ["Spots"];
   const [hideTab, setHideTab] = useState(false);
+  const {showTab} = useAuth();
 
   useLayoutEffect(() => {
     const routes = state.routes;
@@ -105,6 +107,10 @@ export default function TabBar({ state, descriptors, navigation }) {
       ? setHideTab(true)
       : setHideTab(false);
   }, [state, descriptors]);
+
+  useEffect(() => {
+    setHideTab(!showTab);
+  }, [showTab])
 
   return (
     <View style={hideTab ? styles.hideContainer : styles.container}>

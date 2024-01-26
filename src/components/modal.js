@@ -3,6 +3,7 @@ import { Color } from "../constants/color";
 import Modal from "react-native-modalbox";
 import { FontAwesome5 } from "@expo/vector-icons";
 import React from "react";
+import { useAuth } from "../provider/authProvider";
 
 const successMessage =
   "Reception success.\nVisitor code: 100002\nVisitor name: Test";
@@ -75,7 +76,38 @@ export const ErrorModal = ({ showModal, modalHandler }) => {
   );
 };
 
+export const TestModal = ({ showModal, modalHandler }) => {
+  const {setShowTab} = useAuth();
+
+  const close = () => {
+    modalHandler(false);
+    setShowTab(true);
+  }
+  return (
+    <Modal
+      isOpen={showModal}
+      position="bottom"
+      style={styles.tmodal}
+      backdropPressToClose={false}
+      onClosed={close}
+    >
+      {/* <View style={styles.modalFooter}>
+        <Pressable onPress={close} style={styles.button}>
+          <Text style={styles.buttonText}>Close</Text>
+        </Pressable>
+      </View> */}
+    </Modal>
+  );
+}
+
 const styles = StyleSheet.create({
+  tmodal: {
+    borderWidth: 1,
+    height: "30%",
+    borderTopLeftRadius: "15%",
+    borderTopRightRadius: "15%",
+    backgroundColor: Color.primary,
+  },
   modal: {
     width: "80%",
     height: "60%",
