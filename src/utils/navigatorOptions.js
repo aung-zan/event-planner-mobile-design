@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View, Pressable } from "react-native";
+import { StyleSheet, Pressable } from "react-native";
 import { HeaderBackButton } from "@react-navigation/elements";
-import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 import { removeItem } from "./storage";
 import { Color } from "../constants/color";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";

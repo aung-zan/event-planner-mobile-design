@@ -1,10 +1,13 @@
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
 import { getItem } from "../utils/storage";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [authenticated, setAuthenticate] = useState(false);
+  const [authCheck, setAuthCheck] = useState(false);
+
+  const value = {authenticated, setAuthenticate, authCheck};
 
   const checkAuth = async () => {
     const result = await getItem('token');
@@ -12,12 +15,16 @@ export const AuthProvider = ({ children }) => {
     if (result !== null) {
       setAuthenticate(true);
     }
+
+    setAuthCheck(true);
   }
 
-  checkAuth();
+  useEffect(() => {
+    checkAuth();
+  }, []);
 
   return (
-    <AuthContext.Provider value={{ authenticated, setAuthenticate }}>
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );
