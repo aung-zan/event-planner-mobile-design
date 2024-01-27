@@ -9,6 +9,7 @@ import Segment from "../components/segment";
 import { chartData, homeSegment } from "../constants/data";
 import Graph from "../components/graph";
 
+// custom back button
 const backButton = (navigateTo, navigation) => {
   useEffect(() => {
     backButtonAction(navigateTo, navigation, styles.backButton);
@@ -29,7 +30,11 @@ const Home = ({ route, navigation }) => {
       <View style={styles.container}>
         <Card data={event} />
         <DatePicker />
-        <Segment segments={homeSegment} segmentType={segmentType} changeSegmentType={setSegmentType} />
+        <Segment
+          segments={homeSegment}
+          segmentType={segmentType}
+          changeSegmentType={setSegmentType}
+        />
 
         {segmentType == 1 ? <Graph type="group" data={data} /> : <></>}
       </View>

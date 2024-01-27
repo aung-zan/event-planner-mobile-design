@@ -1,4 +1,4 @@
-import { StyleSheet, Pressable } from "react-native";
+import { StyleSheet, Pressable, View } from "react-native";
 import { HeaderBackButton } from "@react-navigation/elements";
 import { FontAwesome } from "@expo/vector-icons";
 import { removeItem } from "./storage";
@@ -8,9 +8,12 @@ import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 // For Profile Button on headerRight
 const Profile = ({ logout }) => {
   return (
-    <Pressable onPress={logout}>
-      <FontAwesome name="user-circle" size={24} color={Color.white} />
-    </Pressable>
+    <>
+      <Pressable onPress={logout}>
+        <FontAwesome name="user-circle" size={24} color={Color.white} />
+      </Pressable>
+      <></>
+    </>
   );
 };
 

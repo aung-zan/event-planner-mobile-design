@@ -1,101 +1,38 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { View, Pressable, Text, StyleSheet } from "react-native";
 import { Color } from "../constants/color";
-import { Icon } from "../constants/icon";
-import {
-  FontAwesome,
-  FontAwesome5,
-  MaterialCommunityIcons,
-} from "@expo/vector-icons";
-import { useAuth } from "../provider/authProvider";
+import { tabIcons } from "../constants/icon";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-function ActiveTab({ icon, iconSize, label }) {
-  let activeTabs;
+const ActiveTab = ({ icon, iconSize, label }) => {
+  return (
+    <>
+      <View style={styles.isActive}>
+        <MaterialCommunityIcons
+          name={icon}
+          size={iconSize}
+          color={Color.secondary}
+        />
+      </View>
+      <Text style={styles.text}>{label}</Text>
+    </>
+  );
+};
 
-  switch (label) {
-    case "Surveys":
-      activeTabs = (
-        <>
-          <View style={styles.isActive}>
-            <FontAwesome5 name={icon} size={iconSize} color={Color.secondary} />
-          </View>
-          <Text style={styles.text}>{label}</Text>
-        </>
-      );
-      break;
-    case "Booths":
-    case "Seminars":
-      activeTabs = (
-        <>
-          <View style={styles.isActive}>
-            <MaterialCommunityIcons
-              name={icon}
-              size={iconSize}
-              color={Color.secondary}
-            />
-          </View>
-          <Text style={styles.text}>{label}</Text>
-        </>
-      );
-      break;
-    default:
-      activeTabs = (
-        <>
-          <View style={styles.isActive}>
-            <FontAwesome name={icon} size={iconSize} color={Color.secondary} />
-          </View>
-          <Text style={styles.text}>{label}</Text>
-        </>
-      );
-      break;
-  }
-
-  return <>{activeTabs}</>;
-}
-
-function NormalTab({ icon, iconSize, label }) {
-  let tabs;
-
-  switch (label) {
-    case "Surveys":
-      tabs = (
-        <>
-          <FontAwesome5 name={icon} size={iconSize} color={Color.white} />
-        </>
-      );
-
-      break;
-    case "Booths":
-    case "Seminars":
-      tabs = (
-        <>
-          <MaterialCommunityIcons
-            name={icon}
-            size={iconSize}
-            color={Color.white}
-          />
-        </>
-      );
-
-      break;
-
-    default:
-      tabs = (
-        <>
-          <FontAwesome name={icon} size={iconSize} color={Color.white} />
-        </>
-      );
-      break;
-  }
-
-  return <>{tabs}</>;
-}
+const NormalTab = ({ icon, iconSize }) => {
+  return (
+    <MaterialCommunityIcons name={icon} size={iconSize} color={Color.white} />
+  );
+};
 
 export default function TabBar({ state, descriptors, navigation }) {
   const tabHideRoute = ["Spots"];
   const [hideTab, setHideTab] = useState(false);
-  const {showTab} = useAuth();
 
+  /**
+   * this useLayoutEffect is used for to hide
+   * tab bar in scanner screen.
+   */
   useLayoutEffect(() => {
     const routes = state.routes;
     const focusedRouteKey = routes[state.index].key;
@@ -108,22 +45,16 @@ export default function TabBar({ state, descriptors, navigation }) {
       : setHideTab(false);
   }, [state, descriptors]);
 
-  useEffect(() => {
-    setHideTab(!showTab);
-  }, [showTab])
-
   return (
     <View style={hideTab ? styles.hideContainer : styles.container}>
       {state.routes.map((route, index) => {
         const label = route.name;
-        const icon = Icon[label];
+        const icon = tabIcons[label];
         const iconSize = label == "Visitor" ? 22 : 24;
         const isFocused = state.index === index;
 
         const onPress = () => {
-          if (route.name !== "Scanner") {
-            navigation.navigate(route.name, route.params);
-          }
+          navigation.navigate(route.name, route.params);
         };
 
         return (
@@ -131,7 +62,7 @@ export default function TabBar({ state, descriptors, navigation }) {
             {isFocused ? (
               <ActiveTab icon={icon} iconSize={iconSize} label={label} />
             ) : (
-              <NormalTab icon={icon} iconSize={iconSize} label={label} />
+              <NormalTab icon={icon} iconSize={iconSize} />
             )}
           </Pressable>
         );
@@ -141,6 +72,9 @@ export default function TabBar({ state, descriptors, navigation }) {
 }
 
 const styles = StyleSheet.create({
+  hideContainer: {
+    display: "none",
+  },
   container: {
     flexDirection: "row",
     alignItems: "center",
@@ -152,7 +86,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 25,
     backgroundColor: Color.secondary,
-    // marginBottom: "10%",
   },
   button: {
     alignItems: "center",
@@ -173,8 +106,5 @@ const styles = StyleSheet.create({
     fontFamily: "SF",
     color: Color.white,
     fontSize: 16,
-  },
-  hideContainer: {
-    display: "none",
   },
 });

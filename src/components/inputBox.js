@@ -1,11 +1,10 @@
-import { StyleSheet, View, TextInput } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
+import { StyleSheet, View, TextInput, Text } from "react-native";
 import { Color } from "../constants/color";
 
 const Email = ({ text, onChange }) => {
   return (
-    <View style={styles.inputContainer}>
-      <FontAwesome name="envelope" size={24} color="black" />
+    <View style={styles.container}>
+      <Text style={styles.text}>Email</Text>
       <TextInput
         style={styles.email}
         placeholder="Email address"
@@ -21,13 +20,13 @@ const Email = ({ text, onChange }) => {
 };
 
 const Password = ({ text, onChange }) => {
+  // TODO: add password eye on/off fn
   return (
-    <View style={[styles.inputContainer]}>
-      <FontAwesome name="lock" size={24} color="black" />
+    <View style={styles.container}>
+      <Text style={styles.text}>Password</Text>
       <TextInput
         style={styles.password}
-        placeholder="Password"
-        placeholderTextColor={Color.black}
+        placeholder="password"
         secureTextEntry={true}
         value={text}
         onChangeText={() => onChange()}
@@ -46,28 +45,26 @@ export default function InputBox({ type, text, onChange }) {
 }
 
 const styles = StyleSheet.create({
-  inputContainer: {
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row",
-    marginTop: "2%",
+  container: {
+    marginHorizontal: "10%",
+    marginBottom: "10%",
   },
   email: {
+    marginTop: "2%",
+    height: 30,
     borderBottomWidth: 1,
-    height: 40,
-    width: "70%",
-    padding: 5,
-    marginLeft: "1%",
-    color: Color.black,
+    borderBottomColor: Color.secondary,
     fontFamily: "SF",
   },
   password: {
+    marginTop: "2%",
+    height: 30,
     borderBottomWidth: 1,
-    height: 40,
-    width: "70%",
-    padding: 9,
-    marginLeft: "2%",
-    color: Color.black,
+    borderBottomColor: Color.secondary,
     fontFamily: "SF",
+  },
+  text: {
+    fontFamily: "SF",
+    fontSize: 18,
   },
 });

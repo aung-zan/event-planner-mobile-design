@@ -7,9 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [authenticated, setAuthenticate] = useState(false);
   const [authCheck, setAuthCheck] = useState(false);
 
-  const [showTab, setShowTab] = useState(true);
-
-  const value = {authenticated, setAuthenticate, authCheck, showTab, setShowTab};
+  const value = {authenticated, setAuthenticate, authCheck};
 
   const checkAuth = async () => {
     const result = await getItem('token');

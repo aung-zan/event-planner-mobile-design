@@ -9,12 +9,12 @@ import { listSegment } from "../constants/data";
 import Segment from "../components/segment";
 import { headerRightAction } from "../utils/navigatorOptions";
 
+// ongoing card
 const OngoingView = ({ ongoingEvent }) => {
-  return (
-    <Card key={ongoingEvent.id} data={ongoingEvent} />
-  );
+  return <Card key={ongoingEvent.id} data={ongoingEvent} />;
 };
 
+// pending card list
 const PendingView = ({ pendingEvent }) => {
   return (
     <ScrollView>
@@ -25,6 +25,7 @@ const PendingView = ({ pendingEvent }) => {
   );
 };
 
+// complete card list
 const CompleteView = ({ completeEvent }) => {
   return (
     <ScrollView>
@@ -35,6 +36,7 @@ const CompleteView = ({ completeEvent }) => {
   );
 };
 
+// header right (profile icon logout)
 const headerRight = (setAuthenticate, navigation) => {
   useEffect(() => {
     headerRightAction(setAuthenticate, navigation);
@@ -43,7 +45,8 @@ const headerRight = (setAuthenticate, navigation) => {
 
 const List = ({ navigation }) => {
   const { setAuthenticate } = useAuth();
-  // headerRight(setAuthenticate, navigation);
+  headerRight(setAuthenticate, navigation);
+
   const [segmentType, setSegmentType] = useState(1);
 
   const result = getEventsByType(exhibitions);
@@ -100,7 +103,7 @@ const styles = StyleSheet.create({
   titleText: {
     fontFamily: "SF",
     fontSize: 18,
-  }
+  },
 });
 
 export default List;

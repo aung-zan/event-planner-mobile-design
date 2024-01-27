@@ -2,8 +2,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { backButtonAction } from "../../utils/navigatorOptions";
 import { Color } from "../../constants/color";
-import { ErrorModal, SuccessModal, TestModal } from "../../components/modal";
-import { useAuth } from "../../provider/authProvider";
+import { ErrorModal, SuccessModal } from "../../components/modal";
 
 const backButton = (navigateTo, navigation) => {
   useEffect(() => {
@@ -15,7 +14,6 @@ const Booth = ({ navigation }) => {
   backButton("List", navigation);
 
   const [showModal, setShowModal] = useState(false);
-  const {setShowTab} = useAuth();
 
   const modalType = 2;
 
@@ -25,7 +23,6 @@ const Booth = ({ navigation }) => {
 
   const modalHandler = () => {
     setShowModal(true);
-    setShowTab(false);
   };
 
   return (
@@ -36,12 +33,11 @@ const Booth = ({ navigation }) => {
           <Text style={styles.buttonText}>Open Modal</Text>
         </Pressable>
 
-        {/* {
+        {
           modalType == 1
           ? <SuccessModal showModal={showModal} modalHandler={setShowModal} />
           : <ErrorModal showModal={showModal} modalHandler={setShowModal} />
-        } */}
-        <TestModal showModal={showModal} modalHandler={setShowModal} />
+        }
       </View>
     </View>
   );

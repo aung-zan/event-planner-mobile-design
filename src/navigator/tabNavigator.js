@@ -38,7 +38,7 @@ const Tabs = () => {
         component={SurveyGrp}
         options={{ headerShown: false }}
       />
-      <Tab.Screen name='Visitor' component={Visitor} />
+      {/* <Tab.Screen name='Visitor' component={Visitor} /> */}
     </Tab.Navigator>
   );
 };

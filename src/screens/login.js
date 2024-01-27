@@ -20,6 +20,7 @@ const Login = () => {
       <View style={styles.header}>
         <Text style={styles.headerText}>Q-Mobile</Text>
       </View>
+
       <View style={styles.body}>
         <Text style={styles.title}>Login</Text>
 
@@ -30,6 +31,10 @@ const Login = () => {
           <Pressable onPress={login} style={styles.button}>
             <Text style={styles.buttonText}>Login</Text>
           </Pressable>
+        </View>
+
+        <View style={styles.version}>
+          <Text style={styles.versionText}>version: 1</Text>
         </View>
       </View>
     </View>
@@ -56,7 +61,6 @@ const styles = StyleSheet.create({
     backgroundColor: Color.primary,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
-    borderWidth: 1,
     borderColor: Color.primary,
     marginTop: "-3%",
   },
@@ -69,11 +73,15 @@ const styles = StyleSheet.create({
   loginForm: {
     marginTop: "18%",
   },
+  version: {
+    marginTop: "25%",
+    marginHorizontal: "5%",
+    alignItems: "flex-end",
+  },
   button: {
     borderRadius: 10,
-    marginTop: "7%",
-    marginLeft: "21%",
-    marginRight: "21%",
+    marginTop: "5%",
+    marginHorizontal: "21%",
     height: 60,
     alignItems: "center",
     justifyContent: "center",
@@ -83,6 +91,11 @@ const styles = StyleSheet.create({
     fontFamily: "SF",
     fontSize: 20,
     color: Color.white,
+  },
+  versionText: {
+    fontFamily: "SF",
+    fontSize: 18,
+    color: Color.light,
   },
 });
 

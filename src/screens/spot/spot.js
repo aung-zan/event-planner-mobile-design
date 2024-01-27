@@ -1,46 +1,51 @@
-import { Pressable, ScrollView, SectionList, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { backButtonAction } from "../../utils/navigatorOptions";
 import { Color } from "../../constants/color";
 import SearchBar from "../../components/searchBar";
 import { spotData, spotSegment } from "../../constants/data";
 import Segment from "../../components/segment";
-import { FontAwesome } from '@expo/vector-icons';
-import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 import { getSpotByType } from "../../helper/helper";
-import { useFocusEffect } from "@react-navigation/native";
 
+// custom back button
 const backButton = (navigateTo, navigation) => {
   useEffect(() => {
     backButtonAction(navigateTo, navigation);
   }, [navigation]);
 };
 
-const List = ({spot, icon, onPress}) => {
+// spots list <TODO: move to list component>
+const List = ({ spot, icon, onPress }) => {
   return (
     <View style={styles.listContainer}>
       <ScrollView>
-
         {spot.map((item) => {
           return (
-            <Pressable key={item.id} style={styles.item} onPress={ () => onPress() }>
-              <View style={styles.itemIcon}>
-                {icon}
-              </View>
+            <Pressable
+              key={item.id}
+              style={styles.item}
+              onPress={() => onPress()}
+            >
+              <View style={styles.itemIcon}>{icon}</View>
               <View style={styles.itemInfo}>
                 <Text style={styles.itemText}>{item.name}</Text>
               </View>
-              <View style={{marginLeft: "45%"}}>
-                <FontAwesome5 name="chevron-right" size={23} color={Color.secondary} />
+              <View style={{ marginLeft: "45%" }}>
+                <FontAwesome5
+                  name="chevron-right"
+                  size={23}
+                  color={Color.secondary}
+                />
               </View>
             </Pressable>
           );
         })}
-
       </ScrollView>
     </View>
   );
-}
+};
 
 const Spot = ({ navigation }) => {
   backButton("List", navigation);
@@ -56,15 +61,23 @@ const Spot = ({ navigation }) => {
 
   const toScanner = () => {
     navigation.navigate("SpotScanner");
-  }
+  };
 
   return (
     <View style={styles.background}>
       <View style={styles.container}>
         <SearchBar type={1} />
-        <Segment segments={spotSegment} segmentType={spotType} changeSegmentType={setSpotType} />
+        <Segment
+          segments={spotSegment}
+          segmentType={spotType}
+          changeSegmentType={setSpotType}
+        />
 
-        <List spot={spotType == 1 ? spots.entry : spots.exit} icon={icon} onPress={toScanner} />
+        <List
+          spot={spotType == 1 ? spots.entry : spots.exit}
+          icon={icon}
+          onPress={toScanner}
+        />
       </View>
     </View>
   );
@@ -113,5 +126,5 @@ const styles = StyleSheet.create({
     fontFamily: "SF",
     fontSize: 20,
     color: Color.black,
-  }
+  },
 });
