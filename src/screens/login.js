@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../provider/authProvider";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import InputBox from "../components/inputBox";
 import { Color } from "../constants/color";
 import { setItem } from "../utils/storage";
@@ -16,32 +16,40 @@ const Login = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Q-Mobile</Text>
-      </View>
-
-      <View style={styles.body}>
-        <Text style={styles.title}>Login</Text>
-
-        <View style={styles.loginForm}>
-          <InputBox type="email" text={email} onChange={setEmail} />
-          <InputBox type="password" text={password} onChange={setPassword} />
-
-          <Pressable onPress={login} style={styles.button}>
-            <Text style={styles.buttonText}>Login</Text>
-          </Pressable>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.mainContainer}
+    >
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.headerText}>Q-Mobile</Text>
         </View>
 
-        <View style={styles.version}>
-          <Text style={styles.versionText}>version: 1</Text>
+        <View style={styles.body}>
+          <Text style={styles.title}>Login</Text>
+
+          <View style={styles.loginForm}>
+            <InputBox type="email" text={email} onChange={setEmail} />
+            <InputBox type="password" text={password} onChange={setPassword} />
+
+            <Pressable onPress={login} style={styles.button}>
+              <Text style={styles.buttonText}>Login</Text>
+            </Pressable>
+          </View>
+
+          <View style={styles.version}>
+            <Text style={styles.versionText}>version: 1</Text>
+          </View>
         </View>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+  },
   container: {
     flex: 1,
   },
