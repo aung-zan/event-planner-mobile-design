@@ -146,6 +146,146 @@ export const spotData = [
   },
 ];
 
+export const boothData = [
+  {
+    id: 1,
+    name: "Booth 1"
+  },
+  {
+    id: 2,
+    name: "Booth 2"
+  },
+  {
+    id: 3,
+    name: "Booth 3"
+  },
+  {
+    id: 4,
+    name: "Booth 4"
+  },
+  {
+    id: 5,
+    name: "Booth 5"
+  },
+  {
+    id: 6,
+    name: "Booth 6"
+  },
+  {
+    id: 7,
+    name: "Booth 7"
+  },
+  {
+    id: 8,
+    name: "Booth 8"
+  },
+  {
+    id: 9,
+    name: "Booth 9"
+  },
+  {
+    id: 10,
+    name: "Booth 10"
+  },
+];
+
+export const seminarData = [
+  {
+    id: 1,
+    name: "Seminar 1",
+    place: "Hall 1",
+    datetime: "2024/01/23 08:00 ~ 10:00"
+  },
+  {
+    id: 2,
+    name: "Seminar 2",
+    place: "Hall 1",
+    datetime: "2024/01/23 12:00 ~ 14:00"
+  },
+  {
+    id: 3,
+    name: "Seminar 3",
+    place: "Hall 1",
+    datetime: "2024/01/23 15:00 ~ 17:00"
+  },
+  {
+    id: 4,
+    name: "Seminar 4",
+    place: "Hall 1",
+    datetime: "2024/01/24 08:00 ~ 10:00"
+  },
+  {
+    id: 5,
+    name: "Seminar 5",
+    place: "Hall 1",
+    datetime: "2024/01/24 12:00 ~ 14:00"
+  },
+  {
+    id: 6,
+    name: "Seminar 6",
+    place: "Hall 1",
+    datetime: "2024/01/24 15:00 ~ 17:00"
+  },
+  {
+    id: 7,
+    name: "Seminar 7",
+    place: "Hall 1",
+    datetime: "2024/01/25 08:00 ~ 10:00"
+  },
+  {
+    id: 8,
+    name: "Seminar 8",
+    place: "Hall 1",
+    datetime: "2024/01/25 12:00 ~ 14:00"
+  },
+  {
+    id: 9,
+    name: "Seminar 9",
+    place: "Hall 1",
+    datetime: "2024/01/25 15:00 ~ 17:00"
+  },
+];
+
+export const surveyData = [
+  {
+    id: 1,
+    name: "Survey 1",
+    from: "2024/01/23",
+    to: "2024/01/23",
+    status: "close",
+  },
+  {
+    id: 2,
+    name: "Survey 2",
+    from: "2024/01/23",
+    to: "2024/01/31",
+    status: "open",
+  },
+  {
+    id: 3,
+    name: "Survey 3",
+    from: "2024/01/24",
+    to: "2024/01/24",
+    status: "complete",
+  },
+  {
+    id: 4,
+    name: "Survey 4",
+    from: "2024/01/23",
+    to: "2024/01/31",
+    status: "open",
+  },
+];
+
+export const visitorData = [
+  {
+    id: 1,
+    name: "Test 1",
+    code: "100002",
+    company: "Remote",
+  },
+];
+
 export const scannerData = {
   code: "100002"
 };
