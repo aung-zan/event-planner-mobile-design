@@ -28,8 +28,8 @@ const Home = ({ route, navigation }) => {
   return (
     <View style={styles.background}>
       <View style={styles.container}>
-        <Card data={event} />
-        <DatePicker />
+        <Card data={event} type="normal" />
+        <DatePicker from={event.from} to={event.to} />
         <Segment
           segments={homeSegment}
           segmentType={segmentType}

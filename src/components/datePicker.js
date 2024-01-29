@@ -3,8 +3,11 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { useState } from 'react'
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
-const DatePicker = () => {
-  const [date, setDate] = useState();
+const DatePicker = ({ from, to }) => {
+  const [minimumDate] = from.split(" ");
+  const [maximumDate] = to.split(" ");
+
+  const [date, setDate] = useState(minimumDate);
   const [open, setOpen] = useState(false);
 
   const openPicker = () => {
@@ -19,9 +22,9 @@ const DatePicker = () => {
     closePicker();
     const year = new Date(date).getFullYear();
     const month = (new Date(date).getMonth() + 1).toString().padStart(2, 0);
-    const date = new Date(date).getDate();
+    const day = new Date(date).getDate();
 
-    setDate(year + "/" + month + "/" + date);
+    setDate(year + "-" + month + "-" + day);
   }
 
   return (
@@ -48,8 +51,8 @@ const DatePicker = () => {
         onConfirm={confirmPicker}
         onCancel={closePicker}
         display="inline"
-        maximumDate={new Date(2024, 0, 30)}
-        minimumDate={new Date(2024, 0, 1)}
+        minimumDate={new Date(minimumDate)}
+        maximumDate={new Date(maximumDate)}
       />
     </View>
   )

@@ -12,7 +12,7 @@ const Profile = ({ logout }) => {
       <Pressable onPress={logout}>
         <FontAwesome name="user-circle" size={24} color={Color.white} />
       </Pressable>
-      <></>
+      <View style={{marginLeft: 10, marginRight: 5, borderWidth: 1, borderColor: "white"}}></View>
     </>
   );
 };

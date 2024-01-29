@@ -4,7 +4,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import React from 'react'
 
-const Card = ({ data }) => {
+const Card = ({ data, type }) => {
   const navigation = useNavigation();
   let styleType;
 
@@ -21,13 +21,15 @@ const Card = ({ data }) => {
   }
 
   const cardOnClick = (id) => {
-    const params = {
-      itemId: id,
-    };
-    navigation.navigate("Tab", {
-      screen: "Home",
-      params: params,
-    });
+    if (type !== "normal") {
+      const params = {
+        itemId: id,
+      };
+      navigation.navigate("Tab", {
+        screen: "Home",
+        params: params,
+      });
+    }
   }
 
   return (
@@ -40,7 +42,7 @@ const Card = ({ data }) => {
 
         <View style={styles.cardInfo}>
           <FontAwesome5 name="calendar" size={18} color={Color.white} />
-          <Text style={styles.info}>{data.datetime}</Text>
+          <Text style={styles.info}>{data.from} ~ {data.to}</Text>
         </View>
 
         <View style={styles.cardInfo}>
@@ -49,9 +51,11 @@ const Card = ({ data }) => {
         </View>
       </View>
 
-      <View style={styles.cardIcon}>
-        <FontAwesome5 name="chevron-right" size={24} color="white" />
-      </View>
+      {type === "normal" ? null : (
+        <View style={styles.cardIcon}>
+          <FontAwesome5 name="chevron-right" size={24} color="white" />
+        </View>
+      )}
 
     </Pressable>
   );
