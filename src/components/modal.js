@@ -3,7 +3,6 @@ import { Color } from "../constants/color";
 import Modal from "react-native-modalbox";
 import { FontAwesome5 } from "@expo/vector-icons";
 import React from "react";
-import { useAuth } from "../provider/authProvider";
 
 const successMessage =
   "Reception success.\nVisitor code: 100002\nVisitor name: Test";

@@ -14,7 +14,7 @@ const Seminar = ({navigation}) => {
     navigation.navigate("SeminarDetail");
   }
 
-  backButton("List", navigation);
+  backButton("EventList", navigation);
 
   return (
     <View style={styles.container}>

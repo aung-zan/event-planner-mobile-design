@@ -12,8 +12,10 @@ const backButton = (navigateTo, navigation) => {
   }, [navigation]);
 };
 
-const SpotScanner = ({ navigation }) => {
+const SpotScanner = ({ route, navigation }) => {
   backButton("Spot", navigation);
+
+  console.log(route.params);
 
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);

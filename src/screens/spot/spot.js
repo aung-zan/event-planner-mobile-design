@@ -1,4 +1,4 @@
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { backButtonAction } from "../../utils/navigatorOptions";
 import { Color } from "../../constants/color";
@@ -6,8 +6,8 @@ import SearchBar from "../../components/searchBar";
 import { spotData, spotSegment } from "../../constants/data";
 import Segment from "../../components/segment";
 import { FontAwesome } from "@expo/vector-icons";
-import { FontAwesome5 } from "@expo/vector-icons";
 import { getSpotByType } from "../../helper/helper";
+import List from "../../components/list";
 
 // custom back button
 const backButton = (navigateTo, navigation) => {
@@ -16,39 +16,8 @@ const backButton = (navigateTo, navigation) => {
   }, [navigation]);
 };
 
-// spots list <TODO: move to list component>
-const List = ({ spot, icon, onPress }) => {
-  return (
-    <View style={styles.listContainer}>
-      <ScrollView>
-        {spot.map((item) => {
-          return (
-            <Pressable
-              key={item.id}
-              style={styles.item}
-              onPress={() => onPress()}
-            >
-              <View style={styles.itemIcon}>{icon}</View>
-              <View style={styles.itemInfo}>
-                <Text style={styles.itemText}>{item.name}</Text>
-              </View>
-              <View style={{ marginLeft: "45%" }}>
-                <FontAwesome5
-                  name="chevron-right"
-                  size={23}
-                  color={Color.secondary}
-                />
-              </View>
-            </Pressable>
-          );
-        })}
-      </ScrollView>
-    </View>
-  );
-};
-
 const Spot = ({ navigation }) => {
-  backButton("List", navigation);
+  backButton("EventList", navigation);
 
   const [spotType, setSpotType] = useState(1);
   const spots = getSpotByType(spotData);
@@ -59,8 +28,11 @@ const Spot = ({ navigation }) => {
     icon = <FontAwesome name="sign-out" size={23} color={Color.white} />;
   }
 
-  const toScanner = () => {
-    navigation.navigate("SpotScanner");
+  const toScanner = (params) => {
+    navigation.navigate('SpotScanner', {
+      screen: "SpotScanner",
+      params: params
+    });
   };
 
   return (
@@ -74,7 +46,7 @@ const Spot = ({ navigation }) => {
         />
 
         <List
-          spot={spotType == 1 ? spots.entry : spots.exit}
+          data={spotType == 1 ? spots.entry : spots.exit}
           icon={icon}
           onPress={toScanner}
         />
@@ -95,36 +67,5 @@ const styles = StyleSheet.create({
     backgroundColor: Color.primary,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
-  },
-  listContainer: {
-    marginTop: "5%",
-    marginHorizontal: "5%",
-    height: "64%",
-  },
-  item: {
-    marginTop: "5%",
-    flexDirection: "row",
-    alignItems: "center",
-    paddingVertical: "4%",
-    borderRadius: 15,
-    borderWidth: 1,
-    borderColor: Color.secondary,
-  },
-  itemIcon: {
-    marginLeft: "2%",
-    borderRadius: 50,
-    backgroundColor: Color.secondary,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  itemInfo: {
-    marginLeft: "10%",
-  },
-  itemText: {
-    fontFamily: "SF",
-    fontSize: 20,
-    color: Color.black,
   },
 });

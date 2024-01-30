@@ -17,7 +17,7 @@ const backButton = (navigateTo, navigation) => {
 };
 
 const Home = ({ route, navigation }) => {
-  backButton("List", navigation);
+  backButton("EventList", navigation);
 
   const [segmentType, setSegmentType] = useState(1);
   const eventId = route.params.itemId;

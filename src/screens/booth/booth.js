@@ -11,7 +11,7 @@ const backButton = (navigateTo, navigation) => {
 };
 
 const Booth = ({ navigation }) => {
-  backButton("List", navigation);
+  backButton("EventList", navigation);
 
   const [showModal, setShowModal] = useState(false);
 

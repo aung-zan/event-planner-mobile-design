@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useState } from 'react'
+import { Color } from '../constants/color'
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const DatePicker = ({ from, to }) => {
@@ -31,19 +32,21 @@ const DatePicker = ({ from, to }) => {
     <View style={styles.container}>
       <View style={styles.datePicker}>
         <Pressable style={styles.dateButton} onPress={openPicker}>
-          <FontAwesome5 name="calendar" size={24} color="black" />
           <Text style={styles.dateText}>{date}</Text>
+          <View style={styles.iconContainer}>
+            <FontAwesome5 name="calendar" size={24} color="black" />
+          </View>
         </Pressable>
       </View>
 
-      <View style={styles.dateChanger}>
+      {/* <View style={styles.dateChanger}>
         <Pressable style={styles.dateChangeButton}>
           <FontAwesome5 name="chevron-left" size={24} color="black" />
         </Pressable>
         <Pressable style={styles.dateChangeButton}>
           <FontAwesome5 name="chevron-right" size={24} color="black" />
         </Pressable>
-      </View>
+      </View> */}
 
       <DateTimePickerModal
         isVisible={open}
@@ -68,7 +71,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: "2%",
   },
   datePicker: {
-    width: "62%",
+    width: "100%",
+    height: 40,
+    justifyContent: "center",
+    borderWidth: 1,
+    borderColor: Color.black,
+    borderRadius: 8,
+  },
+  iconContainer: {
+    marginLeft: "56%",
   },
   dateChanger: {
     flexDirection: "row",

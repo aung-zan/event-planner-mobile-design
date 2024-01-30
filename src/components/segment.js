@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     borderBottomColor: Color.secondary,
     flexDirection: "row",
     marginHorizontal: "5%",
-    marginTop: "5%",
+    marginTop: "4%",
     height: "5%",
   },
   segmentButton: {

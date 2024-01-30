@@ -43,7 +43,7 @@ const headerRight = (setAuthenticate, navigation) => {
   }, []);
 };
 
-const List = ({ navigation }) => {
+const EventList = ({ navigation }) => {
   const { setAuthenticate } = useAuth();
   headerRight(setAuthenticate, navigation);
 
@@ -106,4 +106,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default List;
+export default EventList;

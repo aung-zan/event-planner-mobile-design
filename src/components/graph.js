@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
   graphInfo: {
     marginHorizontal: "5%",
-    height: "10%",
+    height: "9%",
     flexDirection: "row",
     justifyContent: "space-around",
   },

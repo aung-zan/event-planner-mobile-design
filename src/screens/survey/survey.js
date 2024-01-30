@@ -14,7 +14,7 @@ const Survey = ({navigation}) => {
     navigation.navigate("SurveyDetail");
   }
 
-  backButton("List", navigation);
+  backButton("EventList", navigation);
 
   return (
     <View style={styles.container}>
