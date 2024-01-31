@@ -7,7 +7,7 @@ import { getEventsByType } from "../helper/helper";
 import Card from "../components/card";
 import { listSegment } from "../constants/data";
 import Segment from "../components/segment";
-import { headerRightAction } from "../utils/navigatorOptions";
+import { headerOptions } from "../utils/navigatorOptions";
 
 // ongoing card
 const OngoingView = ({ ongoingEvent }) => {
@@ -37,15 +37,17 @@ const CompleteView = ({ completeEvent }) => {
 };
 
 // header right (profile icon logout)
-const headerRight = (setAuthenticate, navigation) => {
+const configHeader = (params) => {
+  const navigation = params.navigation;
+
   useEffect(() => {
-    headerRightAction(setAuthenticate, navigation);
-  }, []);
+    headerOptions(params);
+  }, [navigation]);
 };
 
 const EventList = ({ navigation }) => {
   const { setAuthenticate } = useAuth();
-  headerRight(setAuthenticate, navigation);
+  configHeader({navigation, setAuthenticate});
 
   const [segmentType, setSegmentType] = useState(1);
 

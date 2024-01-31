@@ -1,54 +1,68 @@
-import { StyleSheet, Pressable, View } from "react-native";
 import { HeaderBackButton } from "@react-navigation/elements";
-import { FontAwesome } from "@expo/vector-icons";
 import { removeItem } from "./storage";
 import { Color } from "../constants/color";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import Profile from "../components/profile";
+import ScannerVisitor from "../components/scannerVisitor";
 
-// For Profile Button on headerRight
-const Profile = ({ logout }) => {
-  return (
-    <>
-      <Pressable onPress={logout}>
-        <FontAwesome name="user-circle" size={24} color={Color.white} />
-      </Pressable>
-      <View
-        style={styles.smallDot}
-      ></View>
-    </>
+const backButton = (navigation, navigateTo, style) => {
+  return () => (
+    <HeaderBackButton
+      labelVisible={false}
+      onPress={() => {
+        navigation.navigate(navigateTo);
+      }}
+      tintColor={Color.white}
+      style={style}
+    />
   );
 };
 
-// headerRight Actions
-export const headerRightAction = (setAuthenticate, navigation) => {
+const profileButton = (setAuthenticate) => {
   const logout = async () => {
     await removeItem("token");
     setAuthenticate(false);
   };
 
-  navigation.setOptions({
-    headerRight: () => {
-      return <Profile logout={logout} />;
-    },
-  });
+  return () => <Profile logout={logout} />;
 };
 
-// headerLeft Action
-export const backButtonAction = (navigateTo, navigation, style) => {
-  navigation.setOptions({
-    headerLeft: () => {
-      return (
-        <HeaderBackButton
-          labelVisible={false}
-          onPress={() => {
-            navigation.navigate(navigateTo);
-          }}
-          tintColor={Color.white}
-          style={style}
-        />
-      );
-    },
-  });
+const scannerVisitor = (navigation, scanVisitor) => {
+  return () => (
+    <ScannerVisitor
+      onPress={() => {
+        navigation.navigate(scanVisitor);
+      }}
+    />
+  );
+};
+
+export const headerOptions = (params) => {
+  let options = {};
+  const navigation = params.navigation;
+  const style = params?.backButtonStyle;
+  const navigateTo = params?.navigateTo;
+  const setAuthenticate = params?.setAuthenticate;
+  const title = params?.title;
+  const scanVisitor = params?.scanVisitor;
+
+  if (navigateTo) {
+    options.headerLeft = backButton(navigation, navigateTo, style);
+  }
+
+  if (setAuthenticate) {
+    options.headerRight = profileButton(setAuthenticate);
+  }
+
+  if (scanVisitor) {
+    options.headerRight = scannerVisitor(navigation, scanVisitor);
+  }
+
+  if (title) {
+    options.title = title;
+  }
+
+  navigation.setOptions(options);
 };
 
 // headerOptions for bottom tab navigator
@@ -58,12 +72,6 @@ export const tabBarOptions = () => {
     headerShadowVisible: false,
     headerStyle: { backgroundColor: Color.secondary },
   };
-};
-
-export const setHeaderTitle = (navigation, title) => {
-  navigation.setOptions({
-    title: title,
-  });
 };
 
 // hide and show bottom tab
@@ -80,12 +88,3 @@ export const hideOrShowTab = (route) => {
     ? { display: "none" }
     : { display: "flex" };
 };
-
-const styles = StyleSheet.create({
-  smallDot: {
-    marginLeft: 10,
-    marginRight: 5,
-    borderWidth: 1,
-    borderColor: "white",
-  }
-});

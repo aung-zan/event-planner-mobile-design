@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import React, { useEffect, useState } from "react";
-import { backButtonAction } from "../../utils/navigatorOptions";
+import { headerOptions } from "../../utils/navigatorOptions";
 import { Color } from "../../constants/color";
 import SearchBar from "../../components/searchBar";
 import { spotData, spotSegment } from "../../constants/data";
@@ -8,16 +8,21 @@ import Segment from "../../components/segment";
 import { FontAwesome } from "@expo/vector-icons";
 import { getSpotByType } from "../../helper/helper";
 import List from "../../components/list";
+import { useAuth } from "../../provider/authProvider";
 
 // custom back button
-const backButton = (navigateTo, navigation) => {
+const configHeader = (params) => {
+  const navigation = params.navigation;
+
   useEffect(() => {
-    backButtonAction(navigateTo, navigation);
+    headerOptions(params);
   }, [navigation]);
 };
 
 const Spot = ({ navigation }) => {
-  backButton("EventList", navigation);
+  const { setAuthenticate } = useAuth();
+  const navigateTo = "EventList";
+  configHeader({navigation, navigateTo, setAuthenticate});
 
   const [spotType, setSpotType] = useState(1);
   const spots = getSpotByType(spotData);

@@ -1,23 +1,29 @@
 import { StyleSheet, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Color } from "../constants/color";
-import { backButtonAction } from "../utils/navigatorOptions";
+import { backButtonAction, headerOptions } from "../utils/navigatorOptions";
 import { getEventById } from "../helper/helper";
 import Card from "../components/card";
 import DatePicker from "../components/datePicker";
 import Segment from "../components/segment";
 import { chartData, homeSegment } from "../constants/data";
 import Graph from "../components/graph";
+import { useAuth } from "../provider/authProvider";
 
 // custom back button
-const backButton = (navigateTo, navigation) => {
+const configHeader = (params) => {
+  const navigation = params.navigation;
+
   useEffect(() => {
-    backButtonAction(navigateTo, navigation, styles.backButton);
+    headerOptions(params);
   }, [navigation]);
 };
 
 const Home = ({ route, navigation }) => {
-  backButton("EventList", navigation);
+  const { setAuthenticate } = useAuth();
+  const backButtonStyle = styles.backButton;
+  const navigateTo = "EventList";
+  configHeader({navigation, navigateTo, backButtonStyle, setAuthenticate});
 
   const [segmentType, setSegmentType] = useState(1);
   const eventId = route.params.itemId;
