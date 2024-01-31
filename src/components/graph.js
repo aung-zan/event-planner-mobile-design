@@ -33,6 +33,7 @@ const GraphInfo = ({ info }) => {
   );
 };
 
+// TODO: need to fix for booth graph
 const Graph = ({ type, data }) => {
   const chartData = data.data;
 

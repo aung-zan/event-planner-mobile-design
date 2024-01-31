@@ -13,6 +13,8 @@ import BoothVisitor from "../screens/booth/boothVisitor";
 
 import Seminar from "../screens/seminar/seminar";
 import SeminarDetail from "../screens/seminar/seminarDetail";
+import SeminarScanner from "../screens/seminar/seminarScanner";
+import SeminarVisitor from "../screens/seminar/seminarVisitor";
 
 import Survey from "../screens/survey/survey";
 import SurveyDetail from "../screens/survey/surveyDetail";
@@ -65,6 +67,8 @@ export const SeminarGrp = () => {
     >
       <Stack.Screen name="Seminar" component={Seminar} />
       <Stack.Screen name="SeminarDetail" component={SeminarDetail} />
+      <Stack.Screen name="SeminarScanner" component={SeminarScanner} />
+      <Stack.Screen name="SeminarVisitor" component={SeminarVisitor} />
     </Stack.Navigator>
   );
 }

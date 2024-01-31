@@ -24,7 +24,7 @@ const List = ({ data, icon, onPress }) => {
               <View style={styles.itemInfo}>
                 <Text style={styles.itemText}>{item.name}</Text>
               </View>
-              <View style={styles.icon}>
+              <View>
                 <FontAwesome5
                   name="chevron-right"
                   size={23}
@@ -66,11 +66,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  icon: {
-    marginLeft: "45%",
-  },
   itemInfo: {
+    // borderWidth: 1,
     marginLeft: "10%",
+    width: "65%",
   },
   itemText: {
     fontFamily: "SF",
