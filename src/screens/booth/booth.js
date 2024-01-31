@@ -1,21 +1,26 @@
 import { StyleSheet, View } from "react-native";
 import React, { useEffect } from "react";
-import { backButtonAction } from "../../utils/navigatorOptions";
+import { headerOptions } from "../../utils/navigatorOptions";
 import { Color } from "../../constants/color";
 import { boothSegment, boothData } from "../../constants/data";
 import SearchBar from "../../components/searchBar";
 import Segment from "../../components/segment";
 import List from "../../components/list";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useAuth } from "../../provider/authProvider";
 
-const backButton = (navigateTo, navigation) => {
+const configHeader = (params) => {
+  const navigation = params.navigation;
+
   useEffect(() => {
-    backButtonAction(navigateTo, navigation);
+    headerOptions(params);
   }, [navigation]);
 };
 
 const Booth = ({ navigation }) => {
-  backButton("EventList", navigation);
+  const { setAuthenticate } = useAuth();
+  const navigateTo = "EventList";
+  configHeader({navigation, navigateTo, setAuthenticate});
 
   const icon = (
     <MaterialCommunityIcons
@@ -25,8 +30,8 @@ const Booth = ({ navigation }) => {
     />
   );
 
-  const toDetail = () => {
-    navigation.navigate("BoothDetail");
+  const toDetail = (params) => {
+    navigation.navigate("BoothDetail", params);
   };
 
   return (

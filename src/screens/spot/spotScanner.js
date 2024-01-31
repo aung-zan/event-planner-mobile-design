@@ -15,10 +15,11 @@ const configHeader = (params) => {
 };
 
 const SpotScanner = ({ route, navigation }) => {
-  const title = route.params.params.name;
+  const title = route.params.name;
+  const routeParams = route.params;
   const navigateTo = "Spot";
   const scanVisitor = "SpotVisitor";
-  configHeader({navigation, navigateTo, title, scanVisitor});
+  configHeader({navigation, navigateTo, title, scanVisitor, routeParams});
 
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);

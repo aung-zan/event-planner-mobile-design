@@ -34,10 +34,7 @@ const Spot = ({ navigation }) => {
   }
 
   const toScanner = (params) => {
-    navigation.navigate('SpotScanner', {
-      screen: "SpotScanner",
-      params: params
-    });
+    navigation.navigate('SpotScanner', params);
   };
 
   return (

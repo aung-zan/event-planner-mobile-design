@@ -25,18 +25,27 @@ const Tabs = () => {
       <Tab.Screen
         name="Booths"
         component={BoothGrp}
-        options={{ headerShown: false }}
+        options={({ route }) => ({
+          headerShown: false,
+          tabBarStyle: hideOrShowTab(route),
+        })}
       />
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen
         name="Seminars"
         component={SeminarGrp}
-        options={{ headerShown: false }}
+        options={({ route }) => ({
+          headerShown: false,
+          tabBarStyle: hideOrShowTab(route),
+        })}
       />
       <Tab.Screen
         name="Surveys"
         component={SurveyGrp}
-        options={{ headerShown: false }}
+        options={({ route }) => ({
+          headerShown: false,
+          tabBarStyle: hideOrShowTab(route),
+        })}
       />
       {/* <Tab.Screen name='Visitor' component={Visitor} /> */}
     </Tab.Navigator>

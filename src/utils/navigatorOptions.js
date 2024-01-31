@@ -27,11 +27,11 @@ const profileButton = (setAuthenticate) => {
   return () => <Profile logout={logout} />;
 };
 
-const scannerVisitor = (navigation, scanVisitor) => {
+const scannerVisitor = (navigation, scanVisitor, routeParams) => {
   return () => (
     <ScannerVisitor
       onPress={() => {
-        navigation.navigate(scanVisitor);
+        navigation.navigate(scanVisitor, routeParams);
       }}
     />
   );
@@ -45,6 +45,7 @@ export const headerOptions = (params) => {
   const setAuthenticate = params?.setAuthenticate;
   const title = params?.title;
   const scanVisitor = params?.scanVisitor;
+  const routeParams = params?.routeParams;
 
   if (navigateTo) {
     options.headerLeft = backButton(navigation, navigateTo, style);
@@ -55,7 +56,7 @@ export const headerOptions = (params) => {
   }
 
   if (scanVisitor) {
-    options.headerRight = scannerVisitor(navigation, scanVisitor);
+    options.headerRight = scannerVisitor(navigation, scanVisitor, routeParams);
   }
 
   if (title) {
@@ -78,9 +79,13 @@ export const tabBarOptions = () => {
 export const hideOrShowTab = (route) => {
   const scannerRoutes = [
     "SpotScanner",
+    "SpotVisitor",
     "BoothScanner",
+    "BoothVisitor",
     "SeminarScanner",
+    "SeminarVisitor",
     "SurveyScanner",
+    "SurveyVisitor",
   ];
   const routeName = getFocusedRouteNameFromRoute(route);
 

@@ -26,7 +26,7 @@ const NormalTab = ({ icon, iconSize }) => {
 };
 
 export default function TabBar({ state, descriptors, navigation }) {
-  const tabHideRoute = ["Spots"];
+  const tabHideRoute = ["Spots", "Booths"];
   const [hideTab, setHideTab] = useState(false);
 
   /**

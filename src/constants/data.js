@@ -200,6 +200,26 @@ export const boothSegment = [
   { key: 1, name: "Booth" }
 ];
 
+export const boothChartData = [
+  {
+    data: [
+      { hour: "08:00", entering: 10, },
+      { hour: "09:00", entering: 15, },
+      { hour: "10:00", entering: 20, },
+      { hour: "11:00", entering: 18, },
+      { hour: "12:00", entering: 25, },
+      { hour: "13:00", entering: 30, },
+      { hour: "14:00", entering: 22, },
+      { hour: "15:00", entering: 15, },
+      { hour: "16:00", entering: 12, },
+      { hour: "17:00", entering: 10, },
+    ],
+    info: {
+      total: 300,
+    },
+  },
+];
+
 export const seminarData = [
   {
     id: 1,

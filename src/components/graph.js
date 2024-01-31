@@ -15,14 +15,20 @@ const GraphInfo = ({ info }) => {
         <Text style={styles.InfoText}>{info.total}</Text>
         <Text style={styles.InfoText}>Total</Text>
       </View>
-      <View style={styles.Info}>
-        <Text style={styles.InfoText}>{info.enter}</Text>
-        <Text style={[styles.InfoText, styles.InfoTextCurrent]}>Enter</Text>
-      </View>
-      <View style={styles.Info}>
-        <Text style={styles.InfoText}>{info.exit}</Text>
-        <Text style={[styles.InfoText, styles.InfoTextExit]}>Exit</Text>
-      </View>
+
+      {info?.enter ? (
+        <View style={styles.Info}>
+          <Text style={styles.InfoText}>{info.enter}</Text>
+          <Text style={[styles.InfoText, styles.InfoTextCurrent]}>Enter</Text>
+        </View>
+      ) : null}
+
+      {info?.exit ? (
+        <View style={styles.Info}>
+          <Text style={styles.InfoText}>{info.exit}</Text>
+          <Text style={[styles.InfoText, styles.InfoTextExit]}>Exit</Text>
+        </View>
+      ) : null}
     </View>
   );
 };
@@ -48,7 +54,13 @@ const Graph = ({ type, data }) => {
                 <VictoryBar data={chartData} x="hour" y="exiting" />
               </VictoryGroup>
             ) : (
-              <VictoryBar data={chartData} x="hour" y="entering" />
+              <VictoryBar
+                alignment="start"
+                data={chartData}
+                x="hour"
+                y="entering"
+                style={{ data: { fill: Color.success } }}
+              />
             )}
             <VictoryAxis tickValues={chartData.map((item) => item.hour)} />
             <VictoryAxis dependentAxis />

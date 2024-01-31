@@ -1,13 +1,14 @@
-import { StyleSheet, Text, View } from "react-native";
-import React, { useEffect } from "react";
-import { headerOptions } from "../../utils/navigatorOptions";
-import { Color } from "../../constants/color";
-import SearchBar from "../../components/searchBar";
-import List from "../../components/list";
+import { StyleSheet, Text, View } from 'react-native'
+import React, { useEffect } from 'react'
+import { headerOptions } from '../../utils/navigatorOptions';
+import { Color } from '../../constants/color';
+import SearchBar from '../../components/searchBar';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { visitorData } from "../../constants/data";
+import List from '../../components/list';
+import { visitorData } from '../../constants/data';
 
-const headerConfig = (params) => {
+
+const configHeader = (params) => {
   const navigation = params.navigation;
 
   useEffect(() => {
@@ -15,11 +16,11 @@ const headerConfig = (params) => {
   }, [navigation]);
 };
 
-const SpotVisitor = ({ route, navigation }) => {
-  const navigateTo = "Spot";
+const BoothVisitor = ({ route, navigation }) => {
+  const navigateTo = "Booth";
   const title = route.params.name;
 
-  headerConfig({ navigation, navigateTo, title });
+  configHeader({navigation, navigateTo, title});
 
   const icon = (
     <MaterialCommunityIcons
@@ -33,13 +34,17 @@ const SpotVisitor = ({ route, navigation }) => {
     <View style={styles.background}>
       <View style={styles.container}>
         <SearchBar type={1} />
-        <List data={visitorData} icon={icon} />
+
+        <List
+          data={visitorData}
+          icon={icon}
+        />
       </View>
     </View>
-  );
-};
+  )
+}
 
-export default SpotVisitor;
+export default BoothVisitor
 
 const styles = StyleSheet.create({
   background: {
@@ -52,4 +57,4 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
   },
-});
+})

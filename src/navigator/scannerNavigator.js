@@ -8,12 +8,15 @@ import SpotVisitor from "../screens/spot/spotVisitor";
 
 import Booth from "../screens/booth/booth";
 import BoothDetail from "../screens/booth/boothDetail";
+import BoothScanner from "../screens/booth/boothScanner";
+import BoothVisitor from "../screens/booth/boothVisitor";
 
 import Seminar from "../screens/seminar/seminar";
 import SeminarDetail from "../screens/seminar/seminarDetail";
 
 import Survey from "../screens/survey/survey";
 import SurveyDetail from "../screens/survey/surveyDetail";
+
 
 const Stack = createNativeStackNavigator();
 
@@ -45,6 +48,8 @@ export const BoothGrp = () => {
     >
       <Stack.Screen name="Booth" component={Booth} />
       <Stack.Screen name="BoothDetail" component={BoothDetail} />
+      <Stack.Screen name="BoothScanner" component={BoothScanner} />
+      <Stack.Screen name="BoothVisitor" component={BoothVisitor} />
     </Stack.Navigator>
   );
 }
