@@ -14,11 +14,6 @@ export const homeSegment = [
   { key: 2, name: "Booth" },
 ];
 
-export const spotSegment = [
-  { key: 1, name: "Entry" },
-  { key: 2, name: "Exit" },
-];
-
 export const exhibitions = [
   {
     id: "1",
@@ -153,6 +148,11 @@ export const spotData = [
   },
 ];
 
+export const spotSegment = [
+  { key: 1, name: "Entry" },
+  { key: 2, name: "Exit" },
+];
+
 export const boothData = [
   {
     id: 1,
@@ -194,6 +194,10 @@ export const boothData = [
     id: 10,
     name: "Booth 10"
   },
+];
+
+export const boothSegment = [
+  { key: 1, name: "Booth" }
 ];
 
 export const seminarData = [

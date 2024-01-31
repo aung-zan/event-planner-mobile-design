@@ -17,7 +17,9 @@ const Segment = ({ segments, segmentType, changeSegmentType }) => {
           <Pressable
             key={item.key}
             style={style}
-            onPress={() => changeSegmentType(item.key)}
+            onPress={
+              changeSegmentType ? () => changeSegmentType(item.key) : null
+            }
           >
             <Text style={styles.segmentText}>{item.name}</Text>
           </Pressable>

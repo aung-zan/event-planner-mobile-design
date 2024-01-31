@@ -1,21 +1,21 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
 import { Text, View, StyleSheet, Button, Pressable } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import { backButtonAction } from "../../utils/navigatorOptions";
+import { backButtonAction, setHeaderTitle } from "../../utils/navigatorOptions";
 import { checkQrCode } from "../../helper/helper";
 import { ErrorModal, SuccessModal } from "../../components/modal";
 import { Color } from "../../constants/color";
 
-const backButton = (navigateTo, navigation) => {
+const backButton = (navigateTo, navigation, headerTitle) => {
   useEffect(() => {
     backButtonAction(navigateTo, navigation);
-  }, [navigation]);
+    setHeaderTitle(navigation, headerTitle);
+  }, []);
 };
 
 const SpotScanner = ({ route, navigation }) => {
-  backButton("Spot", navigation);
-
-  console.log(route.params);
+  const headerTitle = route.params.params.name;
+  backButton("Spot", navigation, headerTitle);
 
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);

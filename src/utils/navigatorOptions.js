@@ -12,7 +12,9 @@ const Profile = ({ logout }) => {
       <Pressable onPress={logout}>
         <FontAwesome name="user-circle" size={24} color={Color.white} />
       </Pressable>
-      <View style={{marginLeft: 10, marginRight: 5, borderWidth: 1, borderColor: "white"}}></View>
+      <View
+        style={styles.smallDot}
+      ></View>
     </>
   );
 };
@@ -58,6 +60,12 @@ export const tabBarOptions = () => {
   };
 };
 
+export const setHeaderTitle = (navigation, title) => {
+  navigation.setOptions({
+    title: title,
+  });
+};
+
 // hide and show bottom tab
 export const hideOrShowTab = (route) => {
   const scannerRoutes = [
@@ -68,8 +76,16 @@ export const hideOrShowTab = (route) => {
   ];
   const routeName = getFocusedRouteNameFromRoute(route);
 
-  return scannerRoutes.includes(routeName) ? { display: "none" } : { display: "flex" };
+  return scannerRoutes.includes(routeName)
+    ? { display: "none" }
+    : { display: "flex" };
 };
 
 const styles = StyleSheet.create({
+  smallDot: {
+    marginLeft: 10,
+    marginRight: 5,
+    borderWidth: 1,
+    borderColor: "white",
+  }
 });
