@@ -1,54 +1,57 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect } from 'react'
-import { backButtonAction } from '../../utils/navigatorOptions';
-import { Color } from '../../constants/color'
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import React, { useEffect } from "react";
+import { headerOptions } from "../../utils/navigatorOptions";
+import { Color } from "../../constants/color";
+import { useAuth } from "../../provider/authProvider";
+import { surveyData } from "../../constants/data";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import SearchBar from "../../components/searchBar";
+import List from "../../components/list";
 
-const backButton = (navigateTo, navigation) => {
+const configHeader = (params) => {
+  const navigation = params.navigation;
+
   useEffect(() => {
-    backButtonAction(navigateTo, navigation);
+    headerOptions(params);
   }, [navigation]);
 };
 
-const Survey = ({navigation}) => {
-  const toDetail = () => {
-    navigation.navigate("SurveyDetail");
-  }
+const Survey = ({ navigation }) => {
+  const navigateTo = "EventList";
+  const { setAuthenticate } = useAuth();
 
-  backButton("EventList", navigation);
+  configHeader({ navigation, navigateTo, setAuthenticate });
+
+  const icon = (
+    <MaterialCommunityIcons name="chart-box" size={23} color={Color.white} />
+  );
+
+  const toDetail = (params) => {
+    navigation.navigate("SurveyDetail", params);
+  };
 
   return (
-    <View style={styles.container}>
-      <Text>Survey</Text>
-      <Pressable onPress={toDetail} style={styles.button}>
-        <Text style={styles.buttonText}>To Detail</Text>
-      </Pressable>
-    </View>
-  )
-}
+    <View style={styles.background}>
+      <View style={styles.container}>
+        <SearchBar type={1} />
 
-export default Survey
+        <List data={surveyData} icon={icon} onPress={toDetail} />
+      </View>
+    </View>
+  );
+};
+
+export default Survey;
 
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    backgroundColor: Color.secondary,
+  },
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: Color.primary,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
   },
-  button: {
-    borderWidth: 1,
-    borderRadius: 10,
-    marginTop: "7%",
-    marginLeft: "21%",
-    marginRight: "21%",
-    height: 60,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: Color.pending,
-    borderColor: Color.pending,
-  },
-  buttonText: {
-    fontFamily: "Georgia",
-    fontSize: 20,
-    color: Color.white,
-  },
-})
+});

@@ -1,4 +1,4 @@
-import { exhibitions, seminarData, scannerData } from "../constants/data";
+import { exhibitions, seminarData, scannerData, surveyData } from "../constants/data";
 
 export const getEventsByType = (events) => {
   let result = {
@@ -51,6 +51,10 @@ export const getSpotByType = (spots) => {
 
 export const getSeminarById = (id) => {
   return seminarData.find(item => item.id === id);
+};
+
+export const getSurveyById = (id) => {
+  return surveyData.find(item => item.id === id);
 };
 
 export const checkQrCode = (data) => {

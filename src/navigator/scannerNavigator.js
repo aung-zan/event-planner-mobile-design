@@ -18,6 +18,8 @@ import SeminarVisitor from "../screens/seminar/seminarVisitor";
 
 import Survey from "../screens/survey/survey";
 import SurveyDetail from "../screens/survey/surveyDetail";
+import SurveyScanner from "../screens/survey/surveyScanner";
+import SurveyVisitor from "../screens/survey/surveyVisitor";
 
 
 const Stack = createNativeStackNavigator();
@@ -84,6 +86,8 @@ export const SurveyGrp = () => {
     >
       <Stack.Screen name="Survey" component={Survey} />
       <Stack.Screen name="SurveyDetail" component={SurveyDetail} />
+      <Stack.Screen name="SurveyScanner" component={SurveyScanner} />
+      <Stack.Screen name="SurveyVisitor" component={SurveyVisitor} />
     </Stack.Navigator>
   );
 }
