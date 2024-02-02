@@ -8,6 +8,7 @@ import DatePicker from "../components/datePicker";
 import Segment from "../components/segment";
 import { chartData, homeSegment } from "../constants/data";
 import Graph from "../components/graph";
+import { setItem } from "../utils/storage";
 
 // custom back button
 const configHeader = (params) => {
@@ -16,6 +17,10 @@ const configHeader = (params) => {
   useEffect(() => {
     headerOptions(params);
   }, [navigation]);
+};
+
+const setItemId = async (itemId) => {
+  await setItem('itemId', itemId);
 };
 
 const Home = ({ route, navigation }) => {
@@ -27,6 +32,8 @@ const Home = ({ route, navigation }) => {
   const [segmentType, setSegmentType] = useState(1);
   const eventId = route.params.itemId;
   const event = getEventById(eventId);
+
+  setItemId(eventId);
 
   const [data] = chartData;
 

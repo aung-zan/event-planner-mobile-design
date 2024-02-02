@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../screens/home";
 import { SpotGrp, BoothGrp, SeminarGrp, SurveyGrp } from "./scannerNavigator";
 import Visitor from "../screens/visitor";
+import Notification from "../screens/notification";
 import TabBar from "../components/tabBar";
 import { tabBarOptions, hideOrShowTab } from "../utils/navigatorOptions";
 
@@ -47,7 +48,17 @@ const Tabs = () => {
           tabBarStyle: hideOrShowTab(route),
         })}
       />
-      {/* <Tab.Screen name='Visitor' component={Visitor} /> */}
+      <Tab.Screen name="Visitor" component={Visitor} options={{
+        tabBarStyle: {
+          display: "none",
+        }
+      }} />
+      <Tab.Screen name="Noti" component={Notification} options={{
+        title: "Notification",
+        tabBarStyle: {
+          display: "none",
+        }
+      }} />
     </Tab.Navigator>
   );
 };

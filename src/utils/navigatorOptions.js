@@ -47,9 +47,9 @@ const scannerVisitor = (navigation, scanVisitor, routeParams) => {
   );
 };
 
-const closeButton = (navigation, close) => {
+const closeButton = (navigation, close, routeParams) => {
   const closeAction = () => {
-    navigation.navigate(close);
+    navigation.navigate(close, routeParams);
   }
 
   return () => <CloseButton onPress={closeAction} />;
@@ -95,7 +95,7 @@ export const headerOptions = (params) => {
   }
 
   if (close) {
-    options.headerRight = closeButton(navigation, close);
+    options.headerRight = closeButton(navigation, close, routeParams);
     options.headerLeft = () => (<></>);
   }
 

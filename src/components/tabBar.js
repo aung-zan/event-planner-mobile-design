@@ -26,7 +26,7 @@ const NormalTab = ({ icon, iconSize }) => {
 };
 
 export default function TabBar({ state, descriptors, navigation }) {
-  const tabHideRoute = ["Spots", "Booths", "Seminars", "Surveys"];
+  const tabHideRoute = ["Spots", "Booths", "Seminars", "Surveys", "Visitor", "Noti"];
   const [hideTab, setHideTab] = useState(false);
 
   /**
@@ -50,8 +50,12 @@ export default function TabBar({ state, descriptors, navigation }) {
       {state.routes.map((route, index) => {
         const label = route.name;
         const icon = tabIcons[label];
-        const iconSize = label == "Visitor" ? 22 : 24;
+        const iconSize = 24;
         const isFocused = state.index === index;
+
+        if (label === "Visitor" || label === "Noti") {
+          return null;
+        }
 
         const onPress = () => {
           navigation.navigate(route.name, route.params);

@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Color } from '../constants/color';
 
@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
   },
   smallDot: {
-    marginLeft: 10,
-    marginRight: 5,
+    marginLeft: 1,
+    // marginRight: 2,
     borderWidth: 1,
     borderColor: Color.secondary,
   },

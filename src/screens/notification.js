@@ -16,16 +16,16 @@ const headerConfig = (navigation) => {
   }, [navigation]);
 };
 
-const Visitor = ({ navigation }) => {
+const Notification = ({ navigation }) => {
   headerConfig(navigation);
 
   return (
     <View>
-      <Text>Visitor</Text>
+      <Text>Notification</Text>
     </View>
   )
 }
 
-export default Visitor
+export default Notification
 
 const styles = StyleSheet.create({})
