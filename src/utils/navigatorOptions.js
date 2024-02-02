@@ -3,7 +3,17 @@ import { removeItem } from "./storage";
 import { Color } from "../constants/color";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import Profile from "../components/profile";
+import LogoutButton from "../components/logoutButton";
 import ScannerVisitor from "../components/scannerVisitor";
+
+const logoutButton = (setAuthenticate) => {
+  const logout = async () => {
+    await removeItem("token");
+    setAuthenticate(false);
+  };
+
+  return () => <LogoutButton onPress={logout} />;
+}
 
 const backButton = (navigation, navigateTo, style) => {
   return () => (
@@ -18,13 +28,13 @@ const backButton = (navigation, navigateTo, style) => {
   );
 };
 
-const profileButton = (setAuthenticate) => {
-  const logout = async () => {
-    await removeItem("token");
-    setAuthenticate(false);
-  };
+const profileButton = (navigation) => {
+  // const logout = async () => {
+  //   await removeItem("token");
+  //   setAuthenticate(false);
+  // };
 
-  return () => <Profile logout={logout} />;
+  // return () => <Profile logout={logout} />;
 };
 
 const scannerVisitor = (navigation, scanVisitor, routeParams) => {
@@ -40,19 +50,19 @@ const scannerVisitor = (navigation, scanVisitor, routeParams) => {
 export const headerOptions = (params) => {
   let options = {};
   const navigation = params.navigation;
+  const setAuthenticate = params?.setAuthenticate;
   const style = params?.backButtonStyle;
   const navigateTo = params?.navigateTo;
-  const setAuthenticate = params?.setAuthenticate;
   const title = params?.title;
   const scanVisitor = params?.scanVisitor;
   const routeParams = params?.routeParams;
 
-  if (navigateTo) {
-    options.headerLeft = backButton(navigation, navigateTo, style);
+  if (setAuthenticate) {
+    options.headerRight = logoutButton(setAuthenticate);
   }
 
-  if (setAuthenticate) {
-    options.headerRight = profileButton(setAuthenticate);
+  if (navigateTo) {
+    options.headerLeft = backButton(navigation, navigateTo, style);
   }
 
   if (scanVisitor) {
