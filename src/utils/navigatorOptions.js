@@ -5,6 +5,7 @@ import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import Profile from "../components/profile";
 import LogoutButton from "../components/logoutButton";
 import ScannerVisitor from "../components/scannerVisitor";
+import CloseButton from "../components/closeButton";
 
 const logoutButton = (setAuthenticate) => {
   const logout = async () => {
@@ -46,6 +47,14 @@ const scannerVisitor = (navigation, scanVisitor, routeParams) => {
   );
 };
 
+const closeButton = (navigation, close) => {
+  const closeAction = () => {
+    navigation.navigate(close);
+  }
+
+  return () => <CloseButton onPress={closeAction} />;
+}
+
 export const headerOptions = (params) => {
   let options = {};
 
@@ -59,8 +68,11 @@ export const headerOptions = (params) => {
   const title = params?.title;
   // for drawer button
   const profile = params?.profile;
+  // for scan visitor button
   const scanVisitor = params?.scanVisitor;
   const routeParams = params?.routeParams;
+  // for close button
+  const close = params?.close;
 
   if (setAuthenticate) {
     options.headerRight = logoutButton(setAuthenticate);
@@ -80,6 +92,11 @@ export const headerOptions = (params) => {
 
   if (title) {
     options.title = title;
+  }
+
+  if (close) {
+    options.headerRight = closeButton(navigation, close);
+    options.headerLeft = () => (<></>);
   }
 
   navigation.setOptions(options);

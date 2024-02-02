@@ -16,10 +16,10 @@ const configHeader = (params) => {
 };
 
 const SeminarVisitor = ({ route, navigation }) => {
-  const navigateTo = "Seminar";
+  const close = "Seminar";
   const title = route.params.name;
 
-  configHeader({navigation, navigateTo, title});
+  configHeader({navigation, close, title});
 
   const icon = (
     <MaterialCommunityIcons

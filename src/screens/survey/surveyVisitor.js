@@ -16,10 +16,10 @@ const configHeader = (params) => {
 };
 
 const SurveyVisitor = ({ route, navigation }) => {
-  const navigateTo = "Survey";
+  const close = "Survey";
   const title = route.params.name;
 
-  configHeader({ navigation, navigateTo, title });
+  configHeader({ navigation, close, title });
 
   const icon = (
     <MaterialCommunityIcons

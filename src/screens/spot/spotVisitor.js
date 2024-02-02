@@ -16,10 +16,10 @@ const headerConfig = (params) => {
 };
 
 const SpotVisitor = ({ route, navigation }) => {
-  const navigateTo = "Spot";
+  const close = "Spot";
   const title = route.params.name;
 
-  headerConfig({ navigation, navigateTo, title });
+  headerConfig({ navigation, close, title });
 
   const icon = (
     <MaterialCommunityIcons

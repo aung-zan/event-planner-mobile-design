@@ -1,20 +1,19 @@
-import { StyleSheet, Pressable, View } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
-import { Color } from "../constants/color";
-import React from "react";
+import { View, Pressable, StyleSheet } from 'react-native'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Color } from '../constants/color';
 
-const Profile = ({ onPress }) => {
+const CloseButton = ({ onPress }) => {
   return (
     <View style={styles.container}>
       <Pressable onPress={onPress}>
-        <FontAwesome name="user-circle" size={24} color={Color.white} />
+        <MaterialCommunityIcons name="close" size={24} color={Color.white} />
       </Pressable>
       <View style={styles.smallDot}></View>
     </View>
-  );
-};
+  )
+}
 
-export default Profile;
+export default CloseButton;
 
 const styles = StyleSheet.create({
   container: {

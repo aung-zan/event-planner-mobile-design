@@ -17,10 +17,10 @@ const configHeader = (params) => {
 };
 
 const BoothVisitor = ({ route, navigation }) => {
-  const navigateTo = "Booth";
+  const close = "Booth";
   const title = route.params.name;
 
-  configHeader({navigation, navigateTo, title});
+  configHeader({navigation, close, title});
 
   const icon = (
     <MaterialCommunityIcons
