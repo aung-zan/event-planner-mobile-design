@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { AuthProvider } from "./src/provider/authProvider";
 import AppInitializer from "./AppInitializer";
+import 'react-native-gesture-handler';
 
 export default function App() {
   // const [fontsLoaded] = useFonts({

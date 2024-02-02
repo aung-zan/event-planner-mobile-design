@@ -3,8 +3,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Login from "../screens/login";
 import EventList from "../screens/eventList";
 import { useAuth } from "../provider/authProvider";
-import Tabs from "./tabNavigator";
 import { Color } from "../constants/color";
+import DrawerNavigator from "./drawerNavigator";
 
 const Stack = createNativeStackNavigator();
 
@@ -36,8 +36,8 @@ const Navigator = () => {
               }}
             />
             <Stack.Screen
-              name="Tab"
-              component={Tabs}
+              name="Drawer"
+              component={DrawerNavigator}
               options={{ headerShown: false }}
             />
           </>

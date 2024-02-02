@@ -25,9 +25,12 @@ const Card = ({ data, type }) => {
       const params = {
         itemId: id,
       };
-      navigation.navigate("Tab", {
-        screen: "Home",
-        params: params,
+      navigation.navigate("Drawer", {
+        screen: "Tab",
+        params: {
+          screen: "Home",
+          params: params,
+        },
       });
     }
   }
