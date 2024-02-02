@@ -29,12 +29,11 @@ const backButton = (navigation, navigateTo, style) => {
 };
 
 const profileButton = (navigation) => {
-  // const logout = async () => {
-  //   await removeItem("token");
-  //   setAuthenticate(false);
-  // };
+  const profileAction = () => {
+    navigation.toggleDrawer();
+  }
 
-  // return () => <Profile logout={logout} />;
+  return () => <Profile onPress={profileAction} />;
 };
 
 const scannerVisitor = (navigation, scanVisitor, routeParams) => {
@@ -49,11 +48,17 @@ const scannerVisitor = (navigation, scanVisitor, routeParams) => {
 
 export const headerOptions = (params) => {
   let options = {};
+
   const navigation = params.navigation;
+  // for logout button
   const setAuthenticate = params?.setAuthenticate;
-  const style = params?.backButtonStyle;
+  // for back button
   const navigateTo = params?.navigateTo;
+  const style = params?.backButtonStyle;
+  // for title
   const title = params?.title;
+  // for drawer button
+  const profile = params?.profile;
   const scanVisitor = params?.scanVisitor;
   const routeParams = params?.routeParams;
 
@@ -63,6 +68,10 @@ export const headerOptions = (params) => {
 
   if (navigateTo) {
     options.headerLeft = backButton(navigation, navigateTo, style);
+  }
+
+  if (profile) {
+    options.headerRight = profileButton(navigation);
   }
 
   if (scanVisitor) {

@@ -2,7 +2,6 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useEffect } from "react";
 import { headerOptions } from "../../utils/navigatorOptions";
 import { Color } from "../../constants/color";
-import { useAuth } from "../../provider/authProvider";
 import { surveyData } from "../../constants/data";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import SearchBar from "../../components/searchBar";
@@ -18,9 +17,9 @@ const configHeader = (params) => {
 
 const Survey = ({ navigation }) => {
   const navigateTo = "EventList";
-  const { setAuthenticate } = useAuth();
+  const profile = true;
 
-  configHeader({ navigation, navigateTo, setAuthenticate });
+  configHeader({ navigation, navigateTo, profile });
 
   const icon = (
     <MaterialCommunityIcons name="chart-box" size={23} color={Color.white} />

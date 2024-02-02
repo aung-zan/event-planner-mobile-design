@@ -2,7 +2,6 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useEffect } from "react";
 import { headerOptions } from "../../utils/navigatorOptions";
 import { Color } from "../../constants/color";
-import { useAuth } from "../../provider/authProvider";
 import SearchBar from "../../components/searchBar";
 import DatePicker from "../../components/datePicker";
 import List from "../../components/list";
@@ -18,10 +17,10 @@ const configHeader = (params) => {
 };
 
 const Seminar = ({ navigation }) => {
-  const { setAuthenticate } = useAuth();
   const navigateTo = "EventList";
+  const profile = true;
 
-  configHeader({ navigation, navigateTo, setAuthenticate });
+  configHeader({ navigation, navigateTo, profile });
 
   const icon = (
     <MaterialCommunityIcons name="presentation" size={24} color={Color.white} />

@@ -3,10 +3,10 @@ import { FontAwesome } from "@expo/vector-icons";
 import { Color } from "../constants/color";
 import React from "react";
 
-const Profile = ({ logout }) => {
+const Profile = ({ onPress }) => {
   return (
     <View style={styles.container}>
-      <Pressable style={styles.test} onPress={logout}>
+      <Pressable style={styles.test} onPress={onPress}>
         <FontAwesome name="user-circle" size={24} color={Color.white} />
       </Pressable>
       <View style={styles.smallDot}></View>
@@ -19,15 +19,11 @@ export default Profile;
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    // borderWidth: 1,
   },
   smallDot: {
     marginLeft: 10,
     marginRight: 5,
     borderWidth: 1,
     borderColor: Color.secondary,
-  },
-  test: {
-    // borderWidth: 1,
   },
 });

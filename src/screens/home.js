@@ -8,7 +8,6 @@ import DatePicker from "../components/datePicker";
 import Segment from "../components/segment";
 import { chartData, homeSegment } from "../constants/data";
 import Graph from "../components/graph";
-import { useAuth } from "../provider/authProvider";
 
 // custom back button
 const configHeader = (params) => {
@@ -20,10 +19,10 @@ const configHeader = (params) => {
 };
 
 const Home = ({ route, navigation }) => {
-  const { setAuthenticate } = useAuth();
   const backButtonStyle = styles.backButton;
   const navigateTo = "EventList";
-  configHeader({navigation, navigateTo, backButtonStyle, setAuthenticate});
+  const profile = true;
+  configHeader({navigation, navigateTo, backButtonStyle, profile});
 
   const [segmentType, setSegmentType] = useState(1);
   const eventId = route.params.itemId;

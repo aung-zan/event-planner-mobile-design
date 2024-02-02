@@ -7,7 +7,6 @@ import SearchBar from "../../components/searchBar";
 import Segment from "../../components/segment";
 import List from "../../components/list";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useAuth } from "../../provider/authProvider";
 
 const configHeader = (params) => {
   const navigation = params.navigation;
@@ -18,9 +17,9 @@ const configHeader = (params) => {
 };
 
 const Booth = ({ navigation }) => {
-  const { setAuthenticate } = useAuth();
   const navigateTo = "EventList";
-  configHeader({navigation, navigateTo, setAuthenticate});
+  const profile = true;
+  configHeader({navigation, navigateTo, profile});
 
   const icon = (
     <MaterialCommunityIcons

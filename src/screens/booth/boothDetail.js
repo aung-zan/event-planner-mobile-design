@@ -1,7 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect } from 'react'
 import { headerOptions } from '../../utils/navigatorOptions';
-import { useAuth } from '../../provider/authProvider';
 import { Color } from '../../constants/color';
 import DatePicker from '../../components/datePicker';
 import Graph from '../../components/graph';
@@ -16,10 +15,10 @@ const configHeader = (params) => {
 };
 
 const BoothDetail = ({ route, navigation }) => {
-  const { setAuthenticate } = useAuth();
   const navigateTo = "Booth";
   const title = route.params.name;
-  configHeader({navigation, navigateTo, setAuthenticate, title});
+  const profile = true;
+  configHeader({navigation, navigateTo, title, profile });
 
   const [data] = boothChartData;
 

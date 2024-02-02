@@ -1,7 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect } from 'react'
 import { headerOptions } from '../../utils/navigatorOptions';
-import { useAuth } from "../../provider/authProvider";
 import { Color } from '../../constants/color';
 import { getSurveyById } from '../../helper/helper';
 
@@ -15,10 +14,10 @@ const configHeader = (params) => {
 
 const SurveyDetail = ({ route, navigation }) => {
   const navigateTo = "Survey";
-  const { setAuthenticate } = useAuth();
   const title = route.params.name;
+  const profile = true;
 
-  configHeader({ navigation, navigateTo, title, setAuthenticate });
+  configHeader({ navigation, navigateTo, title, profile });
 
   const itemId = route.params.itemId;
   const survey = getSurveyById(itemId);

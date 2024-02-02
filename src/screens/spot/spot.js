@@ -8,7 +8,6 @@ import Segment from "../../components/segment";
 import { FontAwesome } from "@expo/vector-icons";
 import { getSpotByType } from "../../helper/helper";
 import List from "../../components/list";
-import { useAuth } from "../../provider/authProvider";
 
 // custom back button
 const configHeader = (params) => {
@@ -20,9 +19,9 @@ const configHeader = (params) => {
 };
 
 const Spot = ({ navigation }) => {
-  const { setAuthenticate } = useAuth();
   const navigateTo = "EventList";
-  configHeader({navigation, navigateTo, setAuthenticate});
+  const profile = true;
+  configHeader({navigation, navigateTo, profile});
 
   const [spotType, setSpotType] = useState(1);
   const spots = getSpotByType(spotData);
